@@ -5,20 +5,20 @@
  * from: https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/04.01.md
  */
 // recursion
-function binaryRecursionRearch (low, high, khey) {
-    if (low > high)
-        return -1;
-    var mid = parseInt((high + low) / 2);
-    if (this[mid] > khey)
-        return binaryRecursionRearch(low, mid - 1, khey);
-    if (this[mid] < khey)
-        return binaryRecursionRearch(mid + 1, high, khey);
+exports.binaryRecursionRearch = function binaryRecursionRearch (arr, khey, low = 0, high = arr.length -1) {
+    if (low > high)  return -1;
+
+    let mid = parseInt((high + low) / 2);
+    if (arr[mid] > khey)
+        return binaryRecursionRearch(arr, khey, low, mid - 1);
+    if (arr[mid] < khey)
+        return binaryRecursionRearch(arr, khey, mid + 1, high);
     return mid;
 }
 
 
 // while loop
-function binaryWhileRearch (arr, item) {
+exports.binaryWhileRearch = function (arr, item) {
     var left = 0,
         right = arr.length - 1,
         middle;
@@ -39,16 +39,3 @@ function binaryWhileRearch (arr, item) {
 
     return -1;
 }
-
-// test
-var arr = [
-    [1000],
-    [1,3, 34, 2490, 29023, 29020, 23902303],
-    [1, 3, 5, 7, 1000, 8000, 10000],
-    [1, 34, 39,  1000,]
-];
-var num = 1000;
-
-arr.forEach(function (ar) {
-    console.log(find(ar, num));
-});

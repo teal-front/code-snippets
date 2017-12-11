@@ -1,0 +1,11 @@
+{
+  "name": "code-snippets",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  }
+}
