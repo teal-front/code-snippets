@@ -23,4 +23,87 @@ describe('algorithm:', function () {
             })
         })
     })
+
+    describe('#sort', function () {
+        describe('quicksort()', function () {
+            const quickSort = require('../algorithm/sort/quicksort.js').quickSort
+            const cartData = [
+                {price: 11, date: 20160416},
+                {price: 13, date: 20160414},
+                {price: 11, date: 20160414}
+            ];
+            const compareFn = function (a, b) {
+                if (a.price > b.price)
+                    return 1;
+                if (a.price < b.price)
+                    return -1;
+                return a.date > b.date ? 1 : (a.date < b.date ? -1 : 0);
+            }
+            it('sort object with custom compare fn', function () {
+                assert.deepEqual(quickSort(cartData, compareFn), [
+                    {price: 11, date: 20160414},
+                    {price: 11, date: 20160416},
+                    {price: 13, date: 20160414}
+                ])
+            })
+            it('[-1, 3,  5, 4]', function () {
+                assert.deepEqual(quickSort([-1, 3,  5, 4]), [-1, 3,  4, 5])
+            })
+            it('[3, 4, 1, 7, 10]', function () {
+                assert.deepEqual(quickSort([3, 4, 1, 7, 10]), [1, 3, 4, 7, 10])
+            })
+        })
+        describe('insertion sort', function () {
+            const insertionSort = require('../algorithm/sort/insertion-sort').insertion_sort
+            it('[-1, 3,  5, 3, 4]', function () {
+                assert.deepEqual(insertionSort([-1, 3, -3, 5, 3, 4]), [-3, -1, 3, 3, 4, 5])
+            })
+            it('[3, 4, 1, 7, 10]', function () {
+                assert.deepEqual(insertionSort([3, 4, 1, 7, 10]), [1, 3, 4, 7, 10])
+            })
+        })
+    })
+
+    describe('#numericStringAdd', function () {
+        const add = require('../algorithm/numericString-add')
+        it("'2343000.23903' + '999900232343'", function () {
+            assert.strictEqual(add('2343000.23903', '999900232343'), '999902575343.23903');
+        })
+        it("'2343000.23903' + '1.00'", function () {
+            assert.strictEqual(add('2343000.23903', '1.00'), '2343001.23903');
+        })
+        it("'2343000.23903' + '0'", function () {
+            assert.strictEqual(add('2343000.23903', '0'), '2343000.23903');
+        })
+    })
+
+    describe('#removeDuplicateArray', function () {
+        const removeDup = require('../algorithm/remove-duplicates-of-array')
+
+        Object.keys(removeDup).forEach(fnName => {
+            let fn = removeDup[fnName]
+
+            it(`${fnName}():[1, 1, 1, \'1\']`, function () {
+                assert.deepEqual(fn.call(null, [1, 1, 1, '1']), [1, '1'])
+            })
+            it(`${fnName}():[1, 11, 1, 1, 1, 23, 23, 0]`, function () {
+                // ignore order
+                let ret = fn.call(null, [1, 11, 1, 1, 1, 23, 23, 0])
+                assert.deepEqual(ret.sort(), [0, 1, 11, 23])
+            })
+        })
+    })
+
+    describe('#bracketsPairsMatchTest', function () {
+        const pairsMatch = require('../algorithm/brackets-pairs-test')
+        it("if (ad=d) {cdd}(", function () {
+            assert.strictEqual(pairsMatch("if (ad=d) {cdd}("), false)
+        })
+        it("if (ad=d) {cd(d}", function () {
+            assert.strictEqual(pairsMatch("if (ad=d) {cd(d}"), false)
+        })
+        it("if(a==b) {c = d};", function () {
+            assert.strictEqual(pairsMatch("if(a==b) {c = d};"), true)
+        })
+    })
 })

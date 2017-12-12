@@ -2,54 +2,49 @@
  * add two number-like string
  */
 
-!function () {
-    const plus = function(intA, intB) {
-        let iMaxLen = Math.max(intA.length, intB.length),
-            i = iMaxLen - 1;
 
-        let plusNum = 0, sum = '0';
+const plus = function (intA, intB) {
+    let iMaxLen = Math.max(intA.length, intB.length),
+        i = iMaxLen - 1;
 
-        while(i > -1) {
-            let innerSum = (+intA[i]) + (+intB[i]) + plusNum;
+    let plusNum = 0, sum = '';
 
-            sum = innerSum % 10 + sum;
-            plusNum = ~~(innerSum / 10);
+    while (i > -1) {
+        let innerSum = (+intA[i]) + (+intB[i]) + plusNum;
 
-            i--;
-        }
+        sum = innerSum % 10 + sum;
+        plusNum = Math.floor(innerSum / 10); // aka. ~~(innerSum / 10)
 
-        if (plusNum > 0) {
-            sum = plusNum + sum;
-        }
+        i--;
+    }
 
-        return sum;
-    };
+    if (plusNum > 0) {
+        sum = plusNum + sum;
+    }
 
-    const add = function (a, b) {
-        if (!(/[\d\.]+/.test(a) && /[\d\.]+/.test(b))) {
-            throw new Error('arguments should be number');
-        }
+    return sum;
+};
 
-        let intA = a.split('.')[0],
-            intB = b.split('.')[0],
-            floatA = a.split('.')[1] || '0',
-            floatB = b.split('.')[1] || '0',
-            iMaxLen = Math.max(intA.length, intB.length),
-            fMaxLen = Math.max(floatA.length, floatB.length);
+const add = function (a, b) {
+    if (!(/[\d\.]+/.test(a) && /[\d\.]+/.test(b))) {
+        throw new Error('arguments should be number');
+    }
 
-        let sum = '',
-            plusNum = 0;
+    let intA = a.split('.')[0],
+        intB = b.split('.')[0],
+        floatA = a.split('.')[1] || '0',
+        floatB = b.split('.')[1] || '0',
+        iMaxLen = Math.max(intA.length, intB.length),
+        fMaxLen = Math.max(floatA.length, floatB.length);
 
-        intA = '0'.repeat(iMaxLen - intA.length) + intA;
-        intB = '0'.repeat(iMaxLen - intB.length) + intB;
-        floatA = floatA + '0'.repeat(fMaxLen - floatA.length);
-        floatB = floatB + '0'.repeat(fMaxLen - floatB.length);
+    intA = intA.padStart(iMaxLen, '0')
+    intB = intB.padStart(iMaxLen, '0')
+    floatA = floatA.padEnd(fMaxLen, '0')
+    floatB = floatB.padEnd(fMaxLen, '0')
 
-        return plus(intA, intB) + '.' + plus(floatA, floatB);
+    return plus(intA, intB) + '.' + plus(floatA, floatB);
 
-    };
+};
 
 
-    console.log(add('2343000.23903', '999900232343'));
-    //console.log(add('3', '4'));
-}();
+module.exports = add;

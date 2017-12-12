@@ -1,5 +1,5 @@
 /**
- * Linked List:
+ * Linked List: 链表
  * from: http://wuzhiwei.net/ds_app_linkedlist/
  */
 function ListNode ( data ) {

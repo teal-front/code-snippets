@@ -1,8 +1,13 @@
 /**
  * 快速排序
+ * 默认对数字排序
  */
-var quickSort = function (arr, compareFn) {
+exports.quickSort =  function quickSort(arr, compareFn) {
     if (arr.length <= 1) return arr;
+
+    compareFn = compareFn || function (a, b) {
+        return a < b ? -1 : (a > b ? 1 :0)
+    }
 
     var provitIndex = Math.floor((arr.length - 1) / 2),
         provitEle = arr.splice(provitIndex, 1)[0];
@@ -21,36 +26,5 @@ var quickSort = function (arr, compareFn) {
         }
     }
 
-    return [].concat(quickSort(left), provitEle, quickSort(right));
+    return [].concat(quickSort(left, compareFn), provitEle, quickSort(right, compareFn));
 }
-
-///// sort test
-var cartData = [
-    {
-        price: 11,
-        date: 20160416
-    },
-    {
-        price: 11,
-        date: 20160414
-    }
-];
-console.log(quickSort(cartData, function (a, b) {
-    if (a.price > b.price) {
-        return 1;
-    } else if (a.price < b.price) {
-        return -1;
-    } else {
-        return a.date > b.date ? 1 : (a.date < b.date ? -1 : 0);
-    }
-}));
-
-var arr = [
-    [-1, 3, -3, 3, 5, 4],
-    [3, 4, 1, 7, 10]
-]
-arr.forEach(function (ar) {
-    console.log(quickSort(ar, function (a, b) {
-        return a > b ? 1 : (a < b ? -1 : 0);
-    }))
-});

@@ -103,3 +103,16 @@ if (~jQuery.inArray(1, [1, 4])) {
 //判断单词首字母是不是大写的
 var string = "Words";
 string[0] === string[0].toUpperCase()
+
+/**
+ * sameValueZero
+ */
+const assert = require('assert')
+
+0 === -0                      // => true
+Object.is(0, -0)              // => false
+assert.notStrictEqual(0, -0)  // => AssertionError [ERR_ASSERTION]: 0 !== -0
+
+NaN === NaN                      // => false
+Object.is(NaN, NaN)              // => true
+assert.strictEqual(NaN, NaN)    // => AssertionError [ERR_ASSERTION]: NaN === NaN
