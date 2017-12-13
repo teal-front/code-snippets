@@ -1,86 +1,77 @@
 /**
  * find max char in string
  *
- *
  * 用ES6的for of，兼容汉字中单字符4个字节，length=2的情况,如'𠮷'
  */
 
-const string = 'aaaaaaaaaaaabbbbccccedaifoasflajwelasdflkiwero𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷';
-
-/// 查找单个字符出现的次数：
-string.match(new RegExp(char, 'g'))
-
-
-const findMaxCount = function (string) {
-    var charMap =  string.reduce(function (charMap, curChar) {
-        charMap[curChar] || (charMap[curChar] = 0);
-        charMap[curChar]++;
-    }, {})
-    // return charMap[]  todo
-}
-
-/// hash
-// 从文本中找到出现最多的单词，也可以用这个方法
-const findMaxCountByHash = function (string) {
-    let maxLength = 0,
-        maxChar = '';
-
-    let map = {};
-    for(let s of string) {
-        map[s] || (map[s] = 0);
-        map[s]++;
-
-        if (map[s] > maxLength) {
-            maxLength = map[s];
-            maxChar = s;
-        }
-    }
-
-    return {maxLength, maxChar};
-};
-console.dir(findMaxCountByHash(string));
-
 // array
+// 最多的字符可能是多个
 const findMaxCountByArray = function (string) {
-    let maxLength = 0,
-        maxChar = '';
-    let arr = [], i = 0;
+    let maxTimes = 0,
+        maxChars = [];
+    let arr = {};
 
     for(let s of string) {
-        let charCode = s.codePointAt(0);
-
-        arr[charCode] || (arr[charCode] = 0);
-        arr[charCode]++;
-
-        if (arr[charCode] > maxLength) {
-            maxLength = arr[charCode];
-            maxChar = charCode;
+        arr[s] || (arr[s] = 0)
+        arr[s]++
+        if (arr[s] > maxTimes) {
+            maxTimes = arr[s]
+            maxChars = [s]
+        } else if (arr[s] === maxTimes) {
+            maxChars.push(s)
         }
     }
 
-    return {maxLength, maxChar: String.fromCodePoint(maxChar)};
+    return {maxTimes, maxChars};
 };
-console.dir(findMaxCountByArray(string));
+
+
+// regexp
+// 最多的字符可能是多个
+const findMaxCountByRegexp = function (string) {
+    let maxTimes = 0,
+        maxChars = [];
+    let arr = string.split('').sort().join('');
+
+    arr.replace(/(.)\1*/g, (r1, r2) => {
+        // r1.length 字符编码大于0xFFFF
+        if (r1.length > maxTimes) {
+            maxTimes = r1.length
+            maxChars = [r2]
+        } else if (r1.length === maxTimes) {
+            maxChars.push(r2)
+        }
+    })
+
+    return {maxTimes, maxChars};
+};
 
 /// String.prototype.split
 // split & charAt都不支持字符编码大于0xFFFF
 const findMaxCountBySplit = function (string) {
-    let maxLength = 0,
-        maxChar = '';
+    let maxTimes = 0,
+        maxChars = [];
 
     while(string) {
         let char = string.charAt(0),
-            charArr = string.split(char),
-            length = string.length - charArr.join('').length;
+            charStr = string.split(char).join(''),
+            length = string.length - charStr.length;
 
-        if (length > maxLength) {
-            maxLength = length;
-            maxChar = char;
+        if (length > maxTimes) {
+            maxTimes = length;
+            maxChars = [char];
+        } else if (length === maxTimes) {
+            maxChars.push(char)
         }
 
-        string = charArr.join('');
+        string = charStr;
     }
 
-    return {maxLength, maxChar};
+    return { maxTimes, maxChars};
 };
-console.dir(findMaxCountBySplit(string));
+
+module.exports = {
+    findMaxCountBySplit,
+    findMaxCountByArray,
+    findMaxCountByRegexp,
+}

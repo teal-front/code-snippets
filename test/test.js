@@ -106,4 +106,48 @@ describe('algorithm:', function () {
             assert.strictEqual(pairsMatch("if(a==b) {c = d};"), true)
         })
     })
+
+    describe('#findSubstrOfMaxTimes', function () {
+        const methods = require('../algorithm/find-substr-of-max-times-in-string')
+
+        Object.keys(methods).forEach(m => {
+            describe(`${m}()`, function () {
+                if (m === 'findMaxCountByArray') {
+                    it('string contains big bytes', function () {
+                        assert.deepEqual(methods[m].call(null, '𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷aaabbbbcccedaifoasflajwelasdflkiwero'), {
+                            maxTimes: 8,
+                            maxChars: ['𠮷']
+                        })
+                    })
+                }
+
+                it('has same times char', function () {
+                    assert.deepEqual(methods[m].call(null, '11181333932204𠮷'), {
+                        maxTimes: 4,
+                        maxChars: ['1', '3']
+                    })
+                })
+            })
+        })
+    })
+
+    describe('#unique array', function () {
+        const methods = require('../algorithm/unique-array')
+        Object.keys(methods).forEach(m => {
+            let containsNaN = [[NaN, NaN, 1], [NaN, 1]],
+                notContainsNaN = [
+                    [1, 3, 1, '1','1', {},{},[], [], null, /a/,/a/],
+                    [1, 3, '1', {}, {}, [], [],null, /a/, /a/]
+                ]
+
+            describe(`${m}()`, function () {
+                it('contains NaN', function () {
+                    assert.equal(methods[m].call(null,containsNaN[0]).toString(), containsNaN[1].toString())
+                })
+                it('not contains NaN, contains object', function () {
+                    assert.equal(methods[m].call(null, notContainsNaN[0]).toString(), notContainsNaN[1].toString())
+                })
+            })
+        })
+    })
 })

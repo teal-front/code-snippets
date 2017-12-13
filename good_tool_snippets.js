@@ -116,3 +116,13 @@ assert.notStrictEqual(0, -0)  // => AssertionError [ERR_ASSERTION]: 0 !== -0
 NaN === NaN                      // => false
 Object.is(NaN, NaN)              // => true
 assert.strictEqual(NaN, NaN)    // => AssertionError [ERR_ASSERTION]: NaN === NaN
+
+/// 查找单个字符出现的次数,可以处理多字节字符
+const findMaxTimesChar1 = (str, char) => {
+    return (str.match(new RegExp(char, 'g')) || []).length
+}
+/// 查找单个字符出现的次数,不能处理多字节字符(> u0xFFFF)
+const findMaxTimesChar2 = function (string, char) {
+    let splitStr= string.split(char).join('')
+    return string.length - splitStr.length
+}
