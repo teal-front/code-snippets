@@ -9,7 +9,7 @@ describe('algorithm:', function () {
             const method = binarySearch[methodName]
             describe(`${methodName}()`, function () {
                 it('[0]', function () {
-                    assert.equal(method([0], 100), -1)
+                    assert.equal(method([0], 0), 0)
                 })
                 it('[0, 100]', function () {
                     assert.equal(method([0, 100], 100), 1)
@@ -27,39 +27,33 @@ describe('algorithm:', function () {
     describe('#sort', function () {
         describe('quicksort()', function () {
             const quickSort = require('../algorithm/sort/quicksort.js').quickSort
-            const cartData = [
-                {price: 11, date: 20160416},
-                {price: 13, date: 20160414},
-                {price: 11, date: 20160414}
-            ];
-            const compareFn = function (a, b) {
-                if (a.price > b.price)
-                    return 1;
-                if (a.price < b.price)
-                    return -1;
-                return a.date > b.date ? 1 : (a.date < b.date ? -1 : 0);
-            }
-            it('sort object with custom compare fn', function () {
-                assert.deepEqual(quickSort(cartData, compareFn), [
-                    {price: 11, date: 20160414},
-                    {price: 11, date: 20160416},
-                    {price: 13, date: 20160414}
-                ])
-            })
-            it('[-1, 3,  5, 4]', function () {
-                assert.deepEqual(quickSort([-1, 3,  5, 4]), [-1, 3,  4, 5])
+            it('[-1, 3, 3, 5, 3, 4]', function () {
+                assert.deepEqual(quickSort([-1, 3, 3, 5, 3, 4]), [-1, 3, 3, 3, 4, 5])
             })
             it('[3, 4, 1, 7, 10]', function () {
                 assert.deepEqual(quickSort([3, 4, 1, 7, 10]), [1, 3, 4, 7, 10])
             })
         })
         describe('insertion sort', function () {
-            const insertionSort = require('../algorithm/sort/insertion-sort').insertion_sort
-            it('[-1, 3,  5, 3, 4]', function () {
-                assert.deepEqual(insertionSort([-1, 3, -3, 5, 3, 4]), [-3, -1, 3, 3, 4, 5])
+            const methods = require('../algorithm/sort/insertion-sort')
+            Object.keys(methods).forEach(m => {
+                describe(`${m}()`, function () {
+                    it('[-1, 3,  5, 3, 4]', function () {
+                        assert.deepEqual(methods[m].call(null, [-1, 3, -3, 5, 3, 4]), [-3, -1, 3, 3, 4, 5])
+                    })
+                    it('[3, 4, 1, 7, 10]', function () {
+                        assert.deepEqual(methods[m].call(null, [3, 4, 1, 7, 10]), [1, 3, 4, 7, 10])
+                    })
+                })
             })
-            it('[3, 4, 1, 7, 10]', function () {
-                assert.deepEqual(insertionSort([3, 4, 1, 7, 10]), [1, 3, 4, 7, 10])
+        })
+        describe('bubbleSort()', function () {
+            const bubbleSort = require('../algorithm/sort/bubble-sort')
+            it('[-1, 3,  5, 3, 4]', function () {
+                assert.deepEqual(bubbleSort([-1, 3, -3, 5, 3, 4]), [-3, -1, 3, 3, 4, 5])
+            })
+            it('[-1]', function () {
+                assert.deepEqual(bubbleSort([-1]), [-1])
             })
         })
     })
