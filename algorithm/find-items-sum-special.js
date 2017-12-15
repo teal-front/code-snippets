@@ -36,8 +36,11 @@ exports.findSumN = (arr, sum) => {
     return null
 }
 
+/// region 输出2个不同的数，相加为sum
 /**
- * 输出2个数，相加为sum
+ * Loop
+ * time complexity: O(n 2)
+ * space complexity: O(1)
  */
 exports.findSumTwo = (arr, sum) => {
     let l = arr.length
@@ -50,3 +53,43 @@ exports.findSumTwo = (arr, sum) => {
     }
     return null
 }
+
+/**
+ * Two-pass Hash Table
+ * time complexity: O(n)
+ * space complexity: O(n)
+ */
+exports.findSumHashTable = (arr, sum) => {
+    let map = arr.reduce((t, c, i) => {
+        t.set(c, i)
+        return t
+    }, new Map())
+
+    for (let i = 0, l = arr.length; i < l; i++) {
+        let v = sum - arr[i]
+        if (map.has(v) && map.get(v) !== i) {
+            return [i, map.get(v)]
+        }
+    }
+
+    return null
+}
+
+/**
+ * One-pass Hash Table
+ * time complexity: O(n)
+ * space complexity: O(n)
+ */
+exports.findSumHashTable2 = (arr, sum) => {
+    let map = new Map()
+    for (let i = 0, l = arr.length; i < l; i++) {
+        let v = sum - arr[i]
+        if (map.has(v)) {
+            return [i, map.get(v)]
+        }
+        map.set(arr[i], i)
+    }
+
+    return null
+}
+/// endregion

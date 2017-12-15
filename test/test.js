@@ -171,4 +171,23 @@ describe('algorithm:', function () {
             })
         })
     })
+    describe('#find longest substring length', function () {
+        const methods = require('../algorithm/find-longest-substring')
+        Object.keys(methods).forEach(m => {
+            describe(`${m}()`, function () {
+                it('empty string', function () {
+                    assert.strictEqual(methods[m](''), 0)
+                })
+                it('sigle char string', function () {
+                    assert.strictEqual(methods[m]('a'), 1)
+                })
+                it('simple case', function () {
+                    assert.strictEqual(methods[m]('abcdabc'), 4)
+                })
+                it('hard case', function () {
+                    assert.strictEqual(methods[m]('abcdefgabcdefgxyczkiopl'), 13)
+                })
+            })
+        })
+    })
 })
