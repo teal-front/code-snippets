@@ -144,4 +144,31 @@ describe('algorithm:', function () {
             })
         })
     })
+
+    describe('#find items in arr let sum is special', function () {
+        const {findSumN, findSumTwo} = require('../algorithm/find-items-sum-special')
+        const getSum = arr => arr.reduce((sum, cur) => sum + cur, 0)
+        describe('findSumN()', function () {
+            it('simple case', function () {
+                let target = findSumN([1, 3, 4, 5, 7], 8)
+                assert.strictEqual(getSum(target), 8)
+            })
+            it('hard case', function () {
+                let target = findSumN([1, 3, 4, 5, 7], 20)
+                assert.strictEqual(getSum(target), 20)
+            })
+        })
+        describe('findSumTwo()', function () {
+            it('simple case', function () {
+                let target = findSumTwo([1, 3, 4, 5, 7], 9)
+                assert.strictEqual(target.length, 2)
+                assert.strictEqual(getSum(target), 9)
+            })
+            it('hard case', function () {
+                let target = findSumTwo([1, 3, 4, 5, 7], 4)
+                assert.strictEqual(target.length, 2)
+                assert.strictEqual(getSum(target), 4)
+            })
+        })
+    })
 })
