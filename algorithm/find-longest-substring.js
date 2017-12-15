@@ -7,6 +7,7 @@
 exports.lengthOfLongestSubstring = (str) => {
     let n = str.length, ans = 0
     let map = new Map()
+    // [i, j]
     for (let i = 0, j = 0; j < n; j++) {
         if (map.has(str[j])) {
             i = Math.max(map.get(str[j]), i)
@@ -21,6 +22,7 @@ exports.lengthOfLongestSubstring = (str) => {
 exports.lengthOfLongestSubstring2 = str => {
     let ans = 0, i = 0, j = 0, l = str.length
     let set = new Set()
+    // [i, j]
     while(i < l && j < l) {
         if (!set.has(str[j])) {
             set.add(str[j++])
