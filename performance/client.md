@@ -1,3 +1,4 @@
+> 书籍参考：《高性能Javascript》
 ### UI线程
 1. 使用`setTimeout&setInterval`来分块异步执行代码，减少对UI线程的阻塞
 2. 使用`Web workers`来处理执行时间过长的代码，通过消息传递来交换数据(`postMessage&onmessage`)，低版本浏览器`message`只能接收字符串
