@@ -28,9 +28,9 @@ request_header_replace
 2. nginx
    反向代理，负载均衡
    
-   `rewrite ^/jm/redirect?url=(.*) $1 redirect`nginx 对?url部分并不能匹配到，所以不会生效的，这样的法是错误的
+   `rewrite ^/redirect?url=(.*) $1 redirect`nginx 对?url部分并不能匹配到，所以不会生效的，这样的法是错误的
    
-    `rewrite ^/jm/redirect(.*) https://domain.com$1 redirect`这样就可以
+    `rewrite ^/redirect(.*) https://domain.com$1 redirect`这样就可以
 3. 
 
 
