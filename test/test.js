@@ -191,3 +191,18 @@ describe('algorithm:', function () {
         })
     })
 })
+
+describe('data structure:', function () {
+    describe('trie', function () {
+        const Trie = require('../dataStructure/tree/trie')
+        let trie = new Trie()
+        trie.insert(['abc', 'ab', 'aaaa', 'word'])
+
+        it('search function', function () {
+            assert.strictEqual(trie.search('ab'), true)
+        })
+        it('startsWith function', function () {
+            assert.strictEqual(trie.startsWith('aaa'), true)
+        })
+    })
+})

@@ -17,5 +17,20 @@ module.exports = (arr) => {
     return arr
 }
 
+// 降序冒泡排序
+const descBubbleSort = (arr) => {
+    let i = 0, l = arr.length
+
+    while(i++ < l) {
+        for(let j = l; j > -1; j--) {
+            if (arr[j] > arr[j-1]) {
+                [arr[j-1], arr[j]] = [arr[j], arr[j-1]]
+            }
+        }
+    }
+
+    return arr
+}
+
 // 鸡尾酒排序/双向冒泡排序
 // ...
