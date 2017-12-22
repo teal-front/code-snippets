@@ -1,0 +1,25 @@
+==========================
+	jQuery对象的构造
+============================
+1.pushStack()方法是核心方法；
+
+
+============================
+   #Event
+=============================
+1.模拟冒泡：用事件捕获，document.addEventListener(event, func, true)。如火狐不支持的focusin与focusout用focus、blur替代，但focus、blur不支持冒泡。
+2.数据缓存： jQuery.cache为事件系统的数据缓存部分，避免了事件绑定在元素上面而易产生循环引用，进而引起内存泄露。
+ele[expando] = $.guid++;
+$.cache[ele[expando]]为元素相应的事件缓存。
+3.事件绑定：注册事件时储存事件的相关数据即可，由统一的jQuery.cache[ele[expando]].handle存储的函数调用。
+4.模拟事件： jQuery.event.simlate(type, elem, event, bubble);
+
+A.trigger中的判断元素的绑定事件是否有stopPropagation： 先执行元素自身的绑定函数，传入全局的event对象，若元素自身的绑定函数有e.stopPropagation()执行，则传入的event.isPropagationStopped()为true。由此可以判断在此元素上停止了冒泡。
+B.trigger时如果只是想执行元素自身的绑定函数，不想冒泡跟有默认行为，则用$ele.triggerHandle替代。
+
+
+===============================
+ #Derferred jquery1.5+
+ http://www.cnblogs.com/snandy/archive/2012/12/19/2812935.html
+================================
+1.状态改变后就不可更改了。如deferred.resolve()后deferred.state()="resolved", deferred.reject()就没效了。
