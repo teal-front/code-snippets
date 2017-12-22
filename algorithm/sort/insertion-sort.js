@@ -24,7 +24,14 @@ exports.insertion_sort = function (arr) {
             arr[j + 1] = arr[j]
             j--
         }
+        // asc 倒序排列
+        /*while(j >= 0 && arr[j] < temp) {
+        }*/
         arr[j + 1] = temp
+        /// endregion
+
+        /// region
+
         /// endregion
     }
     return arr;
