@@ -1,4 +1,3 @@
-```python
 """
     存放学习Python过程中积累的Python的基础用法
     output不一定是语句返回的值，也有可能是相应元素的值
@@ -238,4 +237,3 @@ repr(x)   #把x变为合适的格式, "hello " + repr(1)  => "hello 1"
 #https://docs.python.org/2/tutorial/datastructures.html
 map(lambda, list)
 filter(lambda, list)
-```

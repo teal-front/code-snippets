@@ -1,4 +1,3 @@
- ```python
  # 1234 to [1, 2, 3, 4]
  [int(x) for x in str(1234)]
  map(int, str(1234))
@@ -22,4 +21,3 @@ import Image, ImageOps
 img = Image.open('original-image.png')
 img_with_border = ImageOps.expand(img,border=300,fill='black')
 img_with_border.save('imaged-with-border.png')
-```

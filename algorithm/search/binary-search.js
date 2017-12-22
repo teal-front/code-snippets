@@ -19,17 +19,14 @@ exports.binaryRecursionRearch = function binaryRecursionRearch (arr, khey, low =
 
 // while loop
 exports.binaryWhileRearch = function (arr, item) {
-    var left = 0,
-        right = arr.length - 1,
-        middle;
+    let left = 0,
+        right = arr.length - 1
 
     while(left <= right) {
-        // while (left < right) { 如果这里是left < right，那下面就是right = middle;
-        middle = left + Math.floor((right - left) / 2);
+        let middle = left + Math.floor((right - left) / 2);
 
         if (item < arr[middle]) {
             right = middle - 1;
-            // right = middle;
         } else if (item > arr[middle]) {
             left = middle + 1;
         } else {
