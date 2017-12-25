@@ -1,43 +1,60 @@
-//继承对象原型
-var o=[1,2,4];
-Object.create=function(o){
-	var F=function(){};
-	F.prototype=o;
-	return new F();
-};
-b=Object.create(o);
-b.a=5;
-b.b=2;
-for(var i in b) {
-	console.log(b[i]);	
+'use strict'
+
+/// region define class
+// 1. prototype(pseudoClass)
+let O = function (name) {
+    this.name = name
+}
+O.prototype = {
+    constructor: O,
+    getName() {
+        return this.name
+    }
 }
 
+let o = function () {
+}
+o.prototype = new O()
 
-/** 定义类
-1. this、prototype
-2. Object.create()
-*/
-var Person = function () {}
-var Man = Object.create(Person)
-var m = new Man()
+// 2. Object.create()
+let p = {
+    name: 'teal',
+    get() {
+        return this.name
+    }
+}
+let intanceCase = Object.create(p)
 
 if (typeof Object.create !== 'function') {
     Object.create = function (o) {
-        var F = function (){}
+        let F = function () {
+        }
         F.prototype = o
         return new F()
     }
 }
 
-/**
-3. 单体
-*/
-var Person = {
-    createNew() {
-        var sigle = {};
-        var age = 1; //  private property
-        sigle.getAget = () => age;
-        return sigle;
-    }
+// 3. 单体
+let createNew = (spec) => {
+    let age = spec.age || 1; //  private property
+
+    let single = {};
+    single.getAge = () => age;
+
+    return single;
 }
-var man = Person.createNew()
+let man = createNew({age: 2})
+/// endregion
+
+/// region prototype
+// constructor, 指向构造函数
+// 大部分对象的constructor都可以被改写，所以不可信。除了1、't', true等的constructor为只读的原生构造函数,
+// 详情见 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor
+function A (){}
+A.prototype.constructor = B;
+(new A()).constructor // => A
+
+
+// private property/method
+
+/// endregion
