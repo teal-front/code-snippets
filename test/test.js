@@ -190,6 +190,20 @@ describe('algorithm:', function () {
             })
         })
     })
+
+    describe('#fibonacci', function () {
+        let fibs = require('../algorithm/fibonacci')
+        Object.keys(fibs).forEach(fib => {
+            describe(`${fib}():`, function () {
+                it('0', function () {
+                    assert.equal(fibs[fib](1), 1)
+                })
+                it('3', function () {
+                    assert.equal(fibs[fib](4), 3)
+                })
+            })
+        })
+    })
 })
 
 describe('data structure:', function () {
