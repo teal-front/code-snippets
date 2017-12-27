@@ -37,8 +37,10 @@ A === B
 NaN !== NaN
 -0 === +0
 
+null === null
 {} !== {}
 [] !== []
+undefined === undefined
 ```
 
 ### Object.is

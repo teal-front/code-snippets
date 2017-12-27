@@ -1,16 +1,32 @@
+> https://httpstatuses.com/
 
-> http://www.jianshu.com/p/0d72911ccae0
+302 vs. 307: 307是不允许客户端改变请求方式？
 
 ### Most use
-1. 200 ok
-2. 302 redirect
-3. 304 Not Modified
-4. 307 Internal Redirect (浏览器内部https重写 向，通过Strict-Transport-Security:max-age=xxxx的http头部来实现)
-4. 400 Bad Request，错误请求语法
-5. 404 not found
-6. 500 服务器错误
-7. 502 网关错误
-8. 504 网关超时
+101 Switching Protocols
+200 OK
+204 No Content
+300 Multiple Choices
+301 Moved Permanently
+**302 Found**
+304 Not Modified
+307 Temporary Redirect
+308 Permanent Redirect
+
+400 Bad Request
+401 Unauthorized
+403 Forbidden
+404 Not Found
+405 Method Not Allowed
+408 Request Timeout
+413 Payload Too Large
+414 Request-URI Too Long
+
+500 Internal Server Error
+501 Not Implemented
+502 Bad Gateway
+**503 Service Unavailable**
+504 Gateway Timeout
 
 ### 详细代码及说明
 1xx (临时响应)

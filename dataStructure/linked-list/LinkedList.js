@@ -42,6 +42,7 @@ LinkedList.prototype.findPrevious = function( element ) {
 LinkedList.prototype.addFirst = function( element ) {
     var h = new ListNode( element );
     h.next = this.head
+    // 原本是空的链
     if( this.head == null ) {
         this.tail = h;
     }
