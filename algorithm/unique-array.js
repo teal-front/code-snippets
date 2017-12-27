@@ -66,6 +66,11 @@ exports.unique_map = arr => {
     let map = {}, ret = []
 
     for(let item of arr) {
+        if (typeof item === 'object') {
+            ret.push(item)
+            continue
+        }
+
         // 保证了1与‘1’之间的区别, 同时避免了值为'__prototype__'的特殊情况
         let key = `${typeof item}${item}`
 

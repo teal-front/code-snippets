@@ -19,7 +19,7 @@ exports.insertion_sort = function (arr) {
 
         /// region method 2
         temp = arr[i];
-        //大于temp时，该数后移
+        //大于temp时，该数后移,是于temp比较，而不是j+1或j-1!!!!
         while ((j >= 0) && (arr[j] > temp)) {
             arr[j + 1] = arr[j]
             j--

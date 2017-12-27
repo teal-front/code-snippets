@@ -1,7 +1,6 @@
-/**
- * 无重复值的数组data中选择n个值，使其值相加为sum
- */
+/// region 无重复值的数组data中选择n个值，使其值相加为sum
 
+// 和为sum的多个数，数目不固定
 exports.findSumN = (arr, sum) => {
     let ret = [];
     let sortedArr = [].slice.call(arr).sort((a,b) => b-a),
@@ -35,11 +34,12 @@ exports.findSumN = (arr, sum) => {
 
     return null
 }
+/// endregion
 
 /// region 输出2个不同的数，相加为sum
 /**
  * Loop
- * time complexity: O(n 2)
+ * time complexity: O(n^n)
  * space complexity: O(1)
  */
 exports.findSumTwo = (arr, sum) => {

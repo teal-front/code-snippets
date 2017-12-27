@@ -89,7 +89,7 @@ function debounce(fn, delay = 50) {
         clearTimeout(timer)
         timer = setTimeout(function () {
             fn.apply(context, args)
-        })
+        }, delay)
     }
     debounced.cancel = function () {
         clearTimeout(timer)

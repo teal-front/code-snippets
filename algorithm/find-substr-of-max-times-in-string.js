@@ -8,21 +8,21 @@
 // 最多的字符可能是多个
 const findMaxCountByArray = function (string) {
     let maxTimes = 0,
-        maxChars = [];
+        maxChars = new Set();
     let arr = {};
 
     for(let s of string) {
-        arr[s] || (arr[s] = 0)
-        arr[s]++
-        if (arr[s] > maxTimes) {
-            maxTimes = arr[s]
-            maxChars = [s]
-        } else if (arr[s] === maxTimes) {
-            maxChars.push(s)
+        let t = (arr[s] || 0) + 1
+        if (t > maxTimes) {
+            maxTimes = t
+            maxChars = new Set(s)
+        } else if (t === maxTimes) {
+            maxChars.add(s)
         }
+        arr[s] = t
     }
 
-    return {maxTimes, maxChars};
+    return {maxTimes, maxChars: [...maxChars]};
 };
 
 
@@ -41,6 +41,10 @@ const findMaxCountByRegexp = function (string) {
         } else if (r1.length === maxTimes) {
             maxChars.push(r2)
         }
+    })
+
+    maxChars = maxChars.filter(c => {
+        return maxChars.indexOf(c) === -1
     })
 
     return {maxTimes, maxChars};
@@ -67,7 +71,7 @@ const findMaxCountBySplit = function (string) {
         string = charStr;
     }
 
-    return { maxTimes, maxChars};
+    return { maxTimes, maxChars: [...new Set(maxChars)]};
 };
 
 module.exports = {

@@ -57,3 +57,41 @@ function processAllUsers () {
       , Promise.resolve()))
 }
 ```
+
+
+### async promise setTimeout 调用时序问题
+```js
+async function f1() {
+  console.log('f1 start')
+  await f2()
+  console.log('f2 end')
+}
+async function f2() {
+  console.log('f2')
+}
+f1()
+console.log('js start')
+setTimeout(function () {
+  console.log('settimeout start')
+}, 0)
+new Promise(function (resolve, reject) {
+  console.log('promise start')
+  resolve()
+}).then(function () {
+  // then方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行
+  console.log('promise then')
+})
+console.log('js end')
+/**
+ * output:
+f1 start
+f2
+js start
+promise start
+js end
+f2 end
+promise then
+settimeout start
+ */
+
+```

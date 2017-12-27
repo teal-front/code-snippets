@@ -1,3 +1,7 @@
+// \1
+/(\d)\1*/   // \n为正则表达示里面的匹配，相当于replace函数中的r1，replace中的$1
+'111222333333'.replace(/(\d)/g, (r1, r2) =>　)
+
 //---------RegExp.prototype.replace的妙用
 var str = '584228855';
 str.replace(/[\w]{2}/g,function(i){return '%'+i;});
