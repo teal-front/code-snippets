@@ -71,23 +71,6 @@ describe('algorithm:', function () {
         })
     })
 
-    describe('#removeDuplicateArray', function () {
-        const removeDup = require('../algorithm/remove-duplicates-of-array')
-
-        Object.keys(removeDup).forEach(fnName => {
-            let fn = removeDup[fnName]
-
-            it(`${fnName}():[1, 1, 1, \'1\']`, function () {
-                assert.deepEqual(fn.call(null, [1, 1, 1, '1']), [1, '1'])
-            })
-            it(`${fnName}():[1, 11, 1, 1, 1, 23, 23, 0]`, function () {
-                // ignore order
-                let ret = fn.call(null, [1, 11, 1, 1, 1, 23, 23, 0])
-                assert.deepEqual(ret.sort(), [0, 1, 11, 23])
-            })
-        })
-    })
-
     describe('#bracketsPairsMatchTest', function () {
         const pairsMatch = require('../algorithm/brackets-pairs-test')
         it("if (ad=d) {cdd}(", function () {
