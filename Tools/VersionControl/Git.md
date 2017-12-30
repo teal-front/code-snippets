@@ -109,44 +109,30 @@ git checkout master
 git merge $c4
 ```
 
+## GPG
+> 详情可参考github上的教程，很详情
+1. gen gpg key, `gpg --gen-key`,首选`RSA 4096`，还可以设置密码与有效期
+2. check key id, `gpg --list-secret-keys --keyid-format LONG`
+```config
+/Users/hubot/.gnupg/secring.gpg
+------------------------------------
+sec   4096R/$keyid 2016-03-10 [expires: 2017-03-10]
+uid                          $username $comment ($email)
+ssb   4096R/42B317FD4BA89E7A 2016-03-10
+```
+3. output public key, `gpg --armor --export $keyid`
+3. add key id to github or somewhere, must begin with `-----BEGIN PGP PUBLIC KEY BLOCK-----`，and end ditto
+4. config git with gpg, `git config --global user.signingkey $keyid`, `git config commit.gpgsign true`
+5. sign the commit: `git commit -S` or sign the tag: `git tag -s $tag`
+6. `git push`
 
+#### GPG key passphrase
+1. mac可用https://gpgtools.org/或者`gpg-agent`来保存密码，免得频繁输入
+#### Edit gpg key
+`gpg --edit-key $keyid` ...
+#### add remote key
+比如nodejs的安装包验证，需要在gpg key server上下载key到本地，https://github.com/nodejs/node/#release-team
+`gpg --keyserver $keyserver --recv-keys $id`
+`gpg --verify 'SHASUM256.txt.asc'`
+`gpg --verify 'SHASUM256.txt.sig' 'SHASUM256.txt'`
 ---
-
-
-我之前做开发一直使用SVN,从上一家单位开始使用Git，到现在大概一年多时间。使用Git让我开发工作变的更自由更快,以及Git帮助团队代码管理和review更规范，现在我已经完全放弃使用SVN全身心拥抱Git。今天整理了一些SVN和Git的对比，希望阅读到此文使用SVN的开发团队能开始迁移到Git,引用习大大最近的一句话啊：世界潮流,浩浩荡荡，顺之则昌，逆之则亡。
-
-Git对比SVN的优势
-1.Git分支功能最为强大，分支管理能力让SVN望尘莫及
-•	git：有本地分支
-•	svn：无本地分支 git可以方便创建本地分支，且创建分支的时间是0(1)，即瞬间就创建好了。由于分支可以是本地的，也就不存在svn目录权限的问题。本地实验不确定的修改，可以创建分支进行，由于在Git上创建分支几乎零成本，git推荐创建分支来隔离修改。
-Git可以很容易地对比两个分支，知道一个分支中哪些提交尚未合并到另一分支，反之亦然。 •	查看当前分支比other分支多了哪些提交：  $ git log other.. •	  •	查看other分支比当前分支多了哪些提交：  $ git log ..other  SVN想做到这些不太容易。
-
-2.Git可以实现更好的发布控制
-针对同一个项目，Git可以设置不同层级的版本库（多版本库）， 或者通过不同的分支（多分支）实现对发布的控制。 •	设置只有发布管理员才有权限推送的版本库或者分支，用于稳定发布版本的维护。 •	设置只有项目经理、模块管理员才有权推送的版本库或者分支，用用于整合测试。
-
-3.隔离开发，提交审核
-如何对团队中的新成员的开发进行审核呢？在Git服务器上可以实现用户自建分支和自建版本库的功能， 这样团队中的新成员既能将本地提交推送到服务器以对工作进行备份， 又能够方便团队中的其他成员对自己的提交进行审核。
-
-审核新成员提交时，从其个人版本库或个人分支获取（fetch）提交，从提交说明、代码规范、编译测试 等多方面对提交逐一审核。审核通过执行 git merge 命令合并到开发主线中。
-
-4.对合并更好的支持，更少的冲突，更好的冲突解决 因为Git基于对内容的追踪而非对文件名追踪，所以遇到一方或双方对文件名更改时， Git能够很好进行自动合并或提供工具辅助合并。而SVN遇到同样问题时会产生树冲突， 解决起来很麻烦。 Git的基于DAG（有向非环图）的设计比SVN的线性提交提供更好的合并追踪， 避免不必要的冲突，提高工作效率。这是开发者选择Git、抛弃SVN的重要理由。
-
-5.版本库的安全性
-SVN版本库安全性很差，是管理员头痛的问题。 •	SVN版本库服务器端历史数据被篡改，或者硬盘故障导致历史数据被篡改时， 客户端很难发现。管理员的备份也会被污染。 •	SVN作为集中式版本控制系统，存在单点故障的风险。备份版本库的任务非常繁重。 Git在这方面完胜SVN。首先Git是分布式版本控制系统，每个用户都相当于一份备份， 管理员无需为数据备份而担心。再有Git中包括提交、文件内容等都通过SHA1哈希保证数据的完整性， 任何恶意篡改历史数据都会被及时发现从而被挫败。
-
-更多的十条喜欢Git的理由
-•	异地协同工作。
-•	现场版本控制。
-•	重写提交说明。
-•	无尽的后悔药。
-•	更好用的提交列表。
-•	更好的差异比较。
-•	工作进度保存。
-•	作为SVN前端实现移动办公。
-•	无处不在的分页器。
-•	快。
-什么情况推荐使用SVN
-夸了这么多Git的优点，当然事实上也是如此，做开发还是拥抱Git吧。不过对于以二进制文件 （Word文档、PPT演示稿） 为主的版本库，为避免多人同时编辑造成合并上的困难， 建议使用SVN做版本控制。因为SVN具有的悲观锁的功能，能够实现一个用户在编辑时对文件进行锁定，阻止多人同时编辑 一个文件。这一悲观锁的功能是 Git 所不具备的。
-
-总结
-Git相比SVN优势还是挺明显的，由于SVN比Git早几年出现，在国内不少成熟(gubuzifeng)的团队还在使用SVN，Git这几年才在国内开始流行，并已经成为年轻团队代码管理必备了。SVN因为没有分支功能，所以对一般开发者而言可能使用起来更简单（对管理者而言可能会头疼），只需要GUI工具就基本能满足需求，而Git因为有强大的分支功能和修改保存功能等，团队代码管理规范的公司为了规范代码的管理需要每个开发者精确的使用Git分支能力,开发者因此需要掌握分支维护能力以及其他Git高级功能，这会增加普通开发者的学习成本。为了团队代码维护更好的，同时提高团队每个成员的开发效率，掌握git技能，放弃SVN拥抱Git是值得的。
