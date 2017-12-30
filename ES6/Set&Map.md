@@ -67,12 +67,37 @@ for (var [k, v] of map.entries())
 ```
 ## WeakMap
 只接受对象(null除外)作为键名
-它的键名所引用的对象都是弱引用，而不是键名所对应的值
+它的键名所引用的对象都是弱引用，不能使用`values` `keys` `enties`枚举，也不能使用`clear`
 ```javascript
 var wm = new WeakMap()
 wm.set(obj, 2)
 
 wm.size // undefined
 wm.forEach // undefined
-wm.clear // undefined
 ```
+### WeakMap Use
+1. once an object is garbage-collected, its listeners or cache will be garbage-collected, too. In other words: there won’t be any memory leaks.
+
+```js
+//cache
+let cache = new WeakMap()
+cache.set(obj, '')
+
+// add listener
+let listeners = new WeakMap()
+function addListener (obj, fn) {
+    if (!listeners.has(obj)) {
+        listeners.set(obj, new Set())
+    }
+    listeners.get(obj).add(fn)
+}
+function trigger(obj) {
+    let listeners = listeners.get(obj) || new Set()
+    for (let action of listeners.keys) {
+        action()
+    }
+}
+```
+
+2. protect data
+见`Object&&OO.js`里的`private property/method`
