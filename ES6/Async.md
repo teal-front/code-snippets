@@ -21,7 +21,7 @@ http://www.ruanyifeng.com/blog/2015/05/thunk.html
 
 ### async
 使用`async`对`promise`进行重构： https://gist.github.com/mpj/3f8bc0c6ecda4294fbeff99f1e3fae85
-##### async函数总是返回promise对象
+##### async函数总是返回promise对象,不管有没有return
 ```js
 var fetchCity = async function (cityName) {
     return $.get('/m/user/get-city-info', {cityName: cityName})
@@ -53,7 +53,7 @@ function processAllUsers () {
     .then(users => 
     
       users.reduce((lastPromise, user) => 
-        lastPromise.then(_ => processUser(user.id))
+        return lastPromise.then(_ => processUser(user.id))
       , Promise.resolve()))
 }
 ```
