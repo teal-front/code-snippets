@@ -66,9 +66,10 @@ function processAllUsers () {
   return db.query(sql, [])
     .then(users => 
     
-      users.reduce((lastPromise, user) => 
-        lastPromise.then(_ => processUser(user.id))
-      , Promise.resolve()))
+      users.reduce((lastPromise, user) => {
+        return lastPromise.then(_ => processUser(user.id))
+      }, Promise.resolve())
+      )
 }
 ```
 
