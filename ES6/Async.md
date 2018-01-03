@@ -1,4 +1,17 @@
 ### setTimeout
+1. 计时器存在精度问题，比如windows上，精度为15ms，如果设置成8ms，那可以实际是0ms或是15ms，所以要确保至少延迟15ms，那要把时间设置大于15ms。
+2. 定时器的计算时间，从setTimeout执行的时候就开始计算了
+```js
+setTimeout(function () {
+    // 会在下面的loop运行完后立马执行，而不是再等25ms
+    console.log('timer invoke')    
+}, 25)
+let time = Date.now()
+while (Date.now - time < 30) {
+    console.log('looping')
+}
+
+```
 
 ### callback
 
@@ -20,8 +33,9 @@ http://www.ruanyifeng.com/blog/2015/05/thunk.html
 ```
 
 ### async
+1. `generator/yield`的升级版，自带执行器，免去了调用`co/bluebird`执行函数库的引用
+2. **async函数总是返回promise对象**
 使用`async`对`promise`进行重构： https://gist.github.com/mpj/3f8bc0c6ecda4294fbeff99f1e3fae85
-##### async函数总是返回promise对象
 ```js
 var fetchCity = async function (cityName) {
     return $.get('/m/user/get-city-info', {cityName: cityName})
