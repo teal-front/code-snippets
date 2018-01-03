@@ -11,13 +11,23 @@ function curry(fn, params) {
     }
 }
 
-/// 记忆(memorize)
-function memo(initObj, fn) {
-    return function (n) {
-        if (!initObj[n]) {
-            return initObj[n] = fn.call(null, n)
+/**
+ * 记忆(memorize)
+ * @param {function} fn
+ * @param {function} hasher 用于生成cache的key值，因为缓存对象的key值得是字符串
+ * @returns function
+ */
+function memorize(fn, hasher, initObj = {}) {
+    let memorize = function (key) {
+        let address = '' + (hasher ? hasher.apply(this, arguments) : key)
+        let cache = memorize.cache
+        if (!cache.hasOwnProperty(address)) {
+            cache[address] = fn.apply(this, arguments)
         }
+        return cache[address]
     }
+    memorize.cache = initObj
+    return memorize
 }
 
 /// region throttle & debounce & requestAnimateRequest
