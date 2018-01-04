@@ -122,7 +122,7 @@ ssb   4096R/42B317FD4BA89E7A 2016-03-10
 ```
 3. output public key, `gpg --armor --export $keyid`
 3. add key id to github or somewhere, must begin with `-----BEGIN PGP PUBLIC KEY BLOCK-----`，and end ditto
-4. config git with gpg, `git config --global user.signingkey $keyid`, `git config commit.gpgsign true`
+4. config git with gpg, `git config --global user.signingkey $keyid`, `git config commit.gpgsign true`,后一个设置了，以后commit就会自动sign了
 5. sign the commit: `git commit -S` or sign the tag: `git tag -s $tag`
 6. `git push`
 
