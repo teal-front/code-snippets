@@ -118,7 +118,7 @@ exports.module = {
                             if (env === 'production') {
                                 return '[hash].[ext]'
                             }
-                            return '[name].[ext]
+                            return '[name].[ext]'
                         },
                         outputPath: '',
                         publicPath (name) {
