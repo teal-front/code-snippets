@@ -24,3 +24,11 @@ referrer-policy: origin-when-cross-origin
 7. X-XSS-Protection: 1; mode=block, 启用XSS保护，并在检查到XSS攻击时，停止渲染页面（例如IE8中，检查到攻击时，整个页面会被一个#替换）；
 8. x-content-type-options: nosniff,互联网上的资源有各种类型，通常浏览器会根据响应头的Content-Type字段来分辨它们的类型。例如："text/html"代表html文档，"image/png"是PNG图片，"text/css"是CSS样式文档。然而，有些资源的Content-Type是错的或者未定义。这时，某些浏览器会启用MIME-sniffing来猜测该资源的类型，解析内容并执行。
 例如，我们即使给一个html文档指定Content-Type为"text/plain"，在IE8-中这个文档依然会被当做html来解析。利用浏览器的这个特性，攻击者甚至可以让原本应该解析为图片的请求被解析为JavaScript
+
+### Payload
+#### 绕过http-only的几种方法
+1. Web服务器漏洞
+http://wooyun.chamd5.org/bug_detail.php?wybug_id=wooyun-2012-07085，Apache<2.2.22  (CVE-2012-0053)，HTTP400会返回http-only cookie
+2. Flash编程安全
+http://wooyun.chamd5.org/bug_detail.php?wybug_id=wooyun-2012-07085
+3. 
