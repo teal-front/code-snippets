@@ -36,3 +36,8 @@ process.exit(0);
 > exec的异步版方法
 
 ### child_process.execFileSync
+
+
+## Path
+### path.resolve
+返回绝对路径
