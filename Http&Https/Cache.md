@@ -9,6 +9,22 @@
 > https://excaliburhan.com/post/things-you-should-know-about-browser-cache.html
 1. 强缓存(减少了http请求)，直接从客户端加载，不发送HTTP请求，在Chrome上显示是cache from disk，根据上一次http请求的 response的`Cache-Control`&`expires`来判断,`expires`是http1.0的产物，是一个绝对时间，`Cache-Control`设置更加灵活，可以设置`max-age`，再结合`Date`的时间与本地时间比较
 2. 协商缓存(减少了http payload)，`If-none-match/etag`, `If-modified-since/last-modified`，协商成功则返回304。`etag`对于资源更精确，但服务器更耗开销；`last-modified`是基于秒级的，小于1秒的判断不了,各个机器时间可能不一致。
+```config
+**Request**:
+# 强缓存判断 优先级：Cache-Control > expries
+Cache-Control: max-age=365000
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+
+Cache-Control: no-store  # 完全不缓存
+Cache-Control: no-cache  # 建议不缓存，具体看其它的HTTP头
+
+If-none-match: 'w/iowerwer'
+If-modified-since: Mon, 22 May 2017 13:22:32 GMT
+
+Response:
+Etag: 'w/iowerwer'
+Last-modified: Mon, 22 May 2017 13:22:32 GMT
+```
 
 
 ## CDN

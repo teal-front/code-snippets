@@ -1,5 +1,7 @@
+> SSL Analyze: https://www.ssllabs.com/ssltest/analyze.html
+
 ## 生成证书&安装
-1. 在[https://sslforfree.com](https://sslforfree.com)上生成网站的证书(期间会进行域名或主机的验证)，会有三个文件，  `ca_bundle.crt`、`certificate.crt`、`private.key`;
+1. 在[https://sslforfree.com](https://sslforfree.com)上生成网站的证书(期间会进行域名或主机的验证)，会有三个文件，  `ca_bundle.crt`、`certificate.crt`、`private.key`,**不支持泛域名形式的，\*.example.com，不过可以最多添加100个具体的子域名**
 2. 合并crt文件，`cat certificate.crt ca_bundle.crt > servername.pem`；
 3. 配置`nginx`
 ```
