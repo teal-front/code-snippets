@@ -4,6 +4,7 @@
 ## Methods
 > xss相关的一些HTTP头部：https://imququ.com/post/web-security-and-response-header.html
 
+0. 富文本XSS过滤时，添加白名单
 1. Cookie set HTTPOnly & Secure (https://www.owasp.org/index.php/HttpOnly)
 2. Data uri的xss，但是下面这个怎么不行
 https://domain.com?returnUrl=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==

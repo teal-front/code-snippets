@@ -1,6 +1,8 @@
 1. http://www.zhangxinxu.com/wordpress/2013/05/caching-tutorial-for-web-authors-and-webmasters/#EXPIRES
 2. https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=zh-cn
 
+## Versions
+1. HTTP1.0与HTTP1.1较大的区别是，HTTP1.1添加了`Cache-Control、Expries、Etag`，丰富了缓存的方式
 
 ## Cache
 > HTTP1.1 Cache-Control: https://blog.toright.com/posts/3414/%E5%88%9D%E6%8E%A2-http-1-1-cache-%E6%A9%9F%E5%88%B6.html
