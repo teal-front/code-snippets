@@ -56,9 +56,10 @@ sudo service apache2 restart
 # net proxy
 polipo # a proxy to turn SOCTETS to HTTP/HTTPS
 proxychains: 
-    # proxychains-ng(new generation): https://github.com/rofl0r/proxychains-ng
+    # proxychains-ng(new generation for mac): https://github.com/rofl0r/proxychains-ng
 	# 可以用在ss上： https://github.com/shadowsocks/shadowsocks/wiki/Using-Shadowsocks-with-Command-Line-Tools
 	# enable command line use SOCKETS connection
+proxychains4 git clone $repo
 
 # curl 默认输出结果到stdout，不会保存文件
 # https://curl.haxx.se/docs/http-cookies.html
@@ -427,6 +428,7 @@ tar -xzfv filename.tar.gz # 解压压缩包文件，并保持文件名一致
 # Linux文件索引库：/var/lib/mlocate/mlocate.db（CentOS 6.x），每天自动更新
 locate {filename}    # 根据文件名查找文件路径
 updatedb [-U pathname]        # 手动更新文件索引库,更新指定的目录索引
+OSX下的路径为： ln -s /usr/libexec/locate.updatedb /usr/local/bin/updatedb
 	
 # -- user & group
 # passwd: /etc/passwd /etc/shadow

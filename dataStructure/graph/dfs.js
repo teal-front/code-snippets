@@ -32,3 +32,29 @@ var combinationSum2 = function(candidates, target) {
     }
 }
 /// endregion
+
+
+/// target sum (当然也可以用DP来做)
+// 给定一个数组，使用+/-来操作元素，使得结果为S，有多少种方案
+// https://leetcode.com/problems/target-sum/
+function findTargetSum (nums, S) {
+    let l = nums.length
+    let sum = nums.reduce((t, n) => {
+        t += n
+        return t
+    }, 0)
+    if (Math.abs(S) > sum) return 0
+
+    let ans = 0
+    dfs(nums, 0, S)
+    return ans
+
+    function dfs (nums, i, S) {
+        if (i === l) {
+            if (S === 0) ans++
+            return
+        }
+        dfs(nums, i + 1, S - nums[i])
+        dfs(nums, i + 1, S + nums[i])
+    }
+}
