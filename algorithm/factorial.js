@@ -5,8 +5,8 @@
 
 // recursive
 // Maximum call stack size exceeded
-exports.factorial = n => {
-    return n === 1 ? n : (n * (n - 1))
+exports.factorial = function fact(n) {
+    return n === 1 ? n : (n * fact(n - 1))
 }
 
 // loop
