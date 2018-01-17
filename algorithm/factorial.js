@@ -1,3 +1,5 @@
+'use strict'
+
 /**
  * 阶乘 n!
  * 0! === 1
@@ -21,11 +23,10 @@ exports.factorialLoop = n => {
 
 /**
  * 尾递归优化版本
- * 不知道为什么还是报调用堆栈溢出
  */
 exports.tailFactorial = function tailFactorial (n, total = 1) {
-    'use strict'
-
+    // 函数体内使用严格模式会报错，因为用到了默认参数
+    // 'use strict'
     if (n === 1) {
         return total
     }
