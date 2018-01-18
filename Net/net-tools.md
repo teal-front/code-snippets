@@ -50,11 +50,13 @@ ssh -X   # X11协议转发，X11即Linux上的图形显示协议。在PC上安�
 nmap -Pn 127.0.0.1  # look for port of foo
 ```
 
-## nc
+## nc (netcat)
 > https://ss64.com/bash/nc.html
 ```bash
 nc -l $port # listen port on $port
-nc $host $port # create tcp client
+nc $host $port # create tcp client, 发送TCP请求
+nc -z 127.0.0.1 0-100       # port scan from 0 to 100
+nc -lv -p 7777 -e '/bin/sh'   # 监听7777端口，接收信息用/bin/sh执行
 ```
 
 ## iptables 路由表

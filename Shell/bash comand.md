@@ -337,11 +337,6 @@ ps -p 234 -o pid,ni,comm  # 输出pid为234的niceness(nice value)
 mail -s 'mail title' nam@qq.com #然后输入邮件内容后，按Ctrl+D结束 |
 echo 'content' | mail -s 'mail title' mailaddress
 
-# netcat
-nc m.app.com 80  # 发送TCP请求
-nc -lv -p 7777 -e '/bin/sh'   # 监听7777端口，接收信息用/bin/sh执行
-nc -z 127.0.0.1 0-100       # port scan from 0 to 100
-
 sudo hostname -s myHostName.local  # mac,永久保存hostname
 less /etc/sysconfig/network      # linux , 同上
 
