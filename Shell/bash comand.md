@@ -332,6 +332,13 @@ ps -p 234 -o pid,ni,comm  # 输出pid为234的niceness(nice value)
 # -- Net
 见/Codes/Net目录
 
+# timezone
+## user (edit ~/.bashrc)
+export TZ="Asia/Shanghai"
+. ~/.bashrc
+## global
+rm -f /etc/localtime
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # mail
 mail -s 'mail title' nam@qq.com #然后输入邮件内容后，按Ctrl+D结束 |
