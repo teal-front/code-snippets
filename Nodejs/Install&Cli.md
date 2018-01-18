@@ -20,10 +20,10 @@ https://nodejs.org/dist/v8.9.0/node-v8.9.0-linux-x64.tar.xz
 1. 安装nodejs@8.9.0
 2. 安装pm2@2.7.2
 3. svn checkout app-node-xxx
-4. 把测试环境的package-lock.json包放入svn，提交odms
+4. 把测试环境的package-lock.json包放入svn，提交发布系统
 5. 安装npm包  npm i --production
 6. 运行pm2
-7. 上odms，看下能不能正常发布到服务器
+7. 上发布系统，看下能不能正常发布到服务器
 8. 配置nginx代理，正常访问，权重设置低点，灰度访问
 9. 定期看nodejs日志，看下nodejs版本问题
 10. Pm2日志处理,crntab -l   
