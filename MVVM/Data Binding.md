@@ -1,6 +1,10 @@
 ### Methods of data binding
-1. Object.observe
+1. wrapper objects (Backbone.Model, Ember.Object)
+2. dirty checking (Angular)
+3. getters and setters
 
+4. Object.observe(a now-withdrawn ECMAScript 7 proposal)
+**目前浏览器还不支持**
 https://amasad.me/object-observe
 ```js
 var o = {};
@@ -17,7 +21,3 @@ o.foo = 1; // add, 'foo', undefined
 o.foo = 2; // update, 'foo', 1
 delete o.foo; // delete, 'foo', 2
 ```
-
-2. wrapper objects (Backbone.Model, Ember.Object)
-3. dirty checking (Angular)
-4. getters and setters
