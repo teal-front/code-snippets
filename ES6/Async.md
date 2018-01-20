@@ -16,8 +16,36 @@ while (Date.now - time < 30) {
 ### callback
 
 ### Generator
+1. 生成器，是迭代器的语法糖。返回了一个{next(){return {done: true, value: ''}}的一个实现
+2. 与迭代器的使用，可以参考./Array.md上的迭代器部分
+3. `[Symbol.iterator] {next(){}}` 可实现对象迭代器
 ```js
+// 实现函数迭代器range迭代
+function *range (start, end) {
+    for (let i = start; i <= end; i++) {
+        yield i
+    }
+}
+for (let i of range(3, 7)) {
+    console.log(i)
+}
 
+function *gen () {
+    let i = 0
+    while(true) {
+        let ans = yield i++
+        if (ans === true) {
+            i = 0
+        }
+    }
+}
+
+let g = gen()
+console.log(g.next().value)
+console.log(g.next().value)
+console.log(g.next().value)
+console.log(g.next(true).value)  // next中的参数被当作上一个yield的返回值 
+console.log(g.next().value)
 ```
 
 ### Thunk

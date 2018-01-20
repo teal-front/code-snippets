@@ -27,36 +27,52 @@ e. Return false.
 1. Array、String、Map、Set内建有迭代器
 2. 对于Object，可以使用Symbol.iterator创建自定义的迭代器
 ```js
-let objWithSelfIterator = {
-    args: [1, 3, 5],
-    *[Symbol.iterator]() {
-        yield this.args[0]
-        yield this.args[1]
-        yield this.args[2]
-    }
+// fib
+/// raw iterator
+let fibRaw = function () {
+let prev= 1, cur = 1
+return {
+ next() {
+   [prev, cur] = [cur, prev + cur]
+   return { done: false, value: cur }
+ }
 }
-for (let o of objWithSelfIterator) {
-    console.log(o)
+}
+let fibraw = fibRaw()
+console.log(fibraw.next().value)
+console.log(fibraw.next().value)
+console.log(fibraw.next().done)
+
+/// iterator
+let fibIterator = {
+[Symbol.iterator]() {
+ let prev = 1, cur = 1
+ return {
+   next() {
+     [prev, cur] = [cur, prev + cur]
+     return { done: false, value: cur }
+   }
+ }
+}
+}
+for (let fibItem of fibIterator) {
+if (fibItem > 100) break
+console.log(`fibItem: ${fibItem}`)
 }
 
-
-// not use generator function 
-let fibonacci = {
-    [Symbol.iterator]() {
-      let pre = 0, cur = 1;
-      return {
-        next() {
-          [pre, cur] = [cur, pre + cur];
-          return { done: false, value: cur }
-        }
-      }
-    }
+/// generator
+//// 迭代器的语法糖，代替next方法
+let fibGenerator = {
+*[Symbol.iterator]() {
+   let prev = 1, cur = 1
+   while (true) {
+     [prev, cur] = [cur, prev + cur]
+     yield cur      
+   }
 }
-  
-for (var n of fibonacci) {
-// truncate the sequence at 1000
-if (n > 1000)
-  break;
-console.log(n);
+}
+for(let fibGenItem of fibGenerator) {
+if (fibGenItem > 100) break
+console.log(`fibGenItem: ${fibGenItem}`)
 }
 ```
