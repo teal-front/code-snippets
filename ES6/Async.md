@@ -19,6 +19,7 @@ while (Date.now - time < 30) {
 1. 生成器，是迭代器的语法糖。返回了一个{next(){return {done: true, value: ''}}的一个实现
 2. 与迭代器的使用，可以参考./Array.md上的迭代器部分
 3. `[Symbol.iterator] {next(){}}` 可实现对象迭代器
+4. 还有$gen.return()、 $gen.throw()方法，都是可以终止迭代的
 ```js
 // 实现函数迭代器range迭代
 function *range (start, end) {
