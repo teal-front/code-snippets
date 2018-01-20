@@ -41,6 +41,7 @@ ws.has(obj)
 
 // WeakSet 不能遍历，是因为成员都是弱引用，随时可能消失，遍历机制无法保证成员的存在
 ws.size // => undefined
+// WeakSet没有迭代器接口
 ws.forEach // => undefined
 ```
 
@@ -73,6 +74,7 @@ var wm = new WeakMap()
 wm.set(obj, 2)
 
 wm.size // undefined
+// WeakMap没有迭代器接口
 wm.forEach // undefined
 ```
 ### WeakMap Use
@@ -99,5 +101,5 @@ function trigger(obj) {
 }
 ```
 
-2. protect data
+### protect data
 见`Object&&OO.js`里的`private property/method`

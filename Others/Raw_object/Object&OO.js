@@ -21,7 +21,7 @@ class A {
 }
 
 // IIFE
-// use closure
+// use closure, **but instance will share the same `privateKey` **
 let IIFE_Class = function () {
     let privateKey = ''
     let privateMethod = () => {}
@@ -43,7 +43,7 @@ let IIFE_Class = function () {
 }()
 
 
-/// WeakMap
+/// WeakMap (通过_key.get(instance)还是可以访问，这样还是私有变量吗？)
 // WeakMap里的对象键，不记入垃圾回收的引用。所以对象可能会不在存在，所以WeakMap不能被枚举，使用`keys` `values`等方法
 // 所以没有`instance`的`key`，就没法取到私有变量
 //
@@ -62,6 +62,7 @@ class WearMap_Class {
 }
 /// Symbol(仅作演示，实际上不能严格保证属性的私有)
 // 用Symbol的唯一性，来确保私有属性。但是es6的`Reflect.ownKeys(obj)`还是可以把symbol对象找出来，Object.keys不能
+// Reflect.ownKeys: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys
 const _counter = Symbol('counter')
 const _action = Symbol('action')
 
@@ -78,6 +79,9 @@ class SymbolClass {
         }
     }
 }
+
+let s = new SymbolClass()
+console.log(s[Reflect.ownKeys(s)[0]]) // 通过Reflect.ownKeys可以找出私有属性
 /// endregion
 
 /// region define class

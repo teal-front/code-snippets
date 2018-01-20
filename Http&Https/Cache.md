@@ -27,7 +27,9 @@ Response:
 Etag: 'w/iowerwer'
 Last-modified: Mon, 22 May 2017 13:22:32 GMT
 ```
-
+### tips
+#### 清除页面缓存
+1. JS发送页面的异步请求，设置页面的请求头`Cache-Control: no-store`，如果是`zepto`可以设置`cache: false`
 
 ## CDN
 站点动静分离，有利于静态资源CDN的设置，有利于cookieless
