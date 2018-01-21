@@ -39,7 +39,8 @@ git config core.fileMode false    # 忽略文件权限修改，应该阻止提�
 ### pull&push&fetch
 
 ```bash
-git fetch    # 拉新，并丢弃本地修改
+git fetch $origin   # 拉新，并丢弃本地修改
+git reset HEAD origin/master   # 丢弃你在本地的所有改动与提交，包括提交哦 
 
 git push --mirror {name}   # 提交远程，并带上历史版本
 git push -u origin master # github上新建仓库后的教程上的，还没用过
@@ -70,8 +71,9 @@ git add foo.txt *.txt **/*
 git commit -m 'comment here'   # 只是提交到本地
 git commit -a -m 'comment all'   # 先添加了，再提交 ？
 
-git checkout -- $file   #丢弃某个文件本地修改，提交到暂存区的也可以
-git reset HEAD $file # unstage a file
+git checkout -- $file   #丢弃某个文件本地修改，已添加到暂存区的改动以及新文件都不会受到影响。
+git reset HEAD $file # unstage a file，把暂存区的文件回复到本地
+
 git diff [HEAD --] $file
 ```
 
