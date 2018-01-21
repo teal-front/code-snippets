@@ -55,10 +55,10 @@ sudo service apache2 restart
 ```
 # net proxy
 polipo # a proxy to turn SOCTETS to HTTP/HTTPS
-proxychains: 
+proxychains: enable command line use SOCKETS connection
     # proxychains-ng(new generation for mac): https://github.com/rofl0r/proxychains-ng
 	# 可以用在ss上： https://github.com/shadowsocks/shadowsocks/wiki/Using-Shadowsocks-with-Command-Line-Tools
-	# enable command line use SOCKETS connection
+	# Mac下使用需限制SIP：进入Recovery OS后，终端运行`csrutil disable`即可
 proxychains4 git clone $repo
 
 # curl 默认输出结果到stdout，不会保存文件
@@ -337,8 +337,7 @@ ps -p 234 -o pid,ni,comm  # 输出pid为234的niceness(nice value)
 export TZ="Asia/Shanghai"
 . ~/.bashrc
 ## global
-rm -f /etc/localtime
-ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # mail
 mail -s 'mail title' nam@qq.com #然后输入邮件内容后，按Ctrl+D结束 |

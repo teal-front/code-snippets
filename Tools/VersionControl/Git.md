@@ -67,6 +67,7 @@ git remote -v          # list all remote repo verbose
 # 通过add添加了文件，文件才能被commit
 git add --all
 git add foo.txt *.txt **/*
+git add -i    # 交互式添加
 
 git commit -m 'comment here'   # 只是提交到本地
 git commit -a -m 'comment all'   # 先添加了，再提交 ？

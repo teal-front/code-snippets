@@ -26,6 +26,20 @@ PasswordAuthentication no
 ```
 4. `ssh-keygen -lf /etc/ssh/ssh_host_rsa_key.pub`，查看rsa加密的公钥指纹，可与客户端的比较，避免中间人攻击。（即使是key登录，也是用`/etc/ssh/ssh_host_rsa_key.pub发送到客户端`）
 
+## ssh_config
+配置`ssh_config`后，这样就可以登录了,`ssh aliyun`
+```conf
+Host aliyun
+Hostname 1.2.3.4
+User root
+IdentityFile ~/.ssh/id_rsa
+
+Host google
+Hostname 4.3.2.1
+User root
+IdentityFile ~/.ssh/google_rsa
+```
+
 ## ssh-agent
 **把生成的private key添加进ssh的连接管理，这样就可以在服务器上通过private key进行ssh登录了**。
 结合ssh-add使用
