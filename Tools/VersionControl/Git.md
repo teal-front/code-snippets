@@ -1,4 +1,7 @@
 ## Git
+1. 本地三颗树， working directory、 stage、 head。新添加的文件会到stage区，commit之后就到head了。
+![trees](https://raw.githubusercontent.com/teal-front/code-snippets/master/Tools/VersionControl/images/trees.png)
+
 > 在线模拟git命令： [https://try.github.io/](http://note.youdao.com/)
 
 > http://rogerdudler.github.io/git-guide/index.zh.html
