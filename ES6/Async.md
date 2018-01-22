@@ -105,37 +105,25 @@ function processAllUsers () {
 
 ### async promise setTimeout 调用时序问题
 ```js
-async function f1() {
-  console.log('f1 start')
-  await f2()
-  console.log('f2 end')
+async function fn1 () {
+    console.log(1)
+    await fn2()
+    console.log(7)
 }
-async function f2() {
-  console.log('f2')
+async function fn2 () {
+    console.log(2)
 }
-f1()
-console.log('js start')
+fn1()
+console.log(3)
 setTimeout(function () {
-  console.log('settimeout start')
+    console.log(8)
 }, 0)
-new Promise(function (resolve, reject) {
-  console.log('promise start')
-  resolve()
-}).then(function () {
-  // then方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行
-  console.log('promise then')
+new Promise((resolve) => {
+    console.log(4)
+    resolve()
+}).then(_ => {
+    // 竟然比async里异步要先执行，先进先出？
+    console.log(6)
 })
-console.log('js end')
-/**
- * output:
-f1 start
-f2
-js start
-promise start
-js end
-f2 end
-promise then
-settimeout start
- */
-
+console.log(5)
 ```

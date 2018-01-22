@@ -1,5 +1,7 @@
 ### Babel
 1. plugins优先于presets进行编译
+> https://segmentfault.com/a/1190000012327811
+> https://juejin.im/post/59ec657ef265da431b6c5b03
 
 ### Optimize
 #### 减少客户端polyfill过大的问题
