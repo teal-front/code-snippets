@@ -62,8 +62,8 @@ http://www.ruanyifeng.com/blog/2015/05/thunk.html
 ```
 
 ### async
-1. `generator/yield`的升级版，自带执行器，免去了调用`co/bluebird`执行函数库的引用
-2. **async函数总是返回promise对象**
+1. **async函数总是返回promise对象**
+2. `generator/yield`的升级版，自带执行器，免去了调用`co/bluebird`执行函数库的引用
 使用`async`对`promise`进行重构： https://gist.github.com/mpj/3f8bc0c6ecda4294fbeff99f1e3fae85
 ```js
 var fetchCity = async function (cityName) {
@@ -101,7 +101,34 @@ function processAllUsers () {
       )
 }
 ```
+#### 对错误的处理
+async里promise里的同步错误会立即错误，异步错误会被自身promise的catch捕获，或async返回的promise的catch捕获
+```js
+(async function errorAsync () {
+    // 这里的两种会立即报错
+    await new Promise((resolve, reject) => {
+        throw new Error('throw err')
+        Promise.reject('reject err')
+    })
+    
+    // setTimoue+ reject会在async返回 的promise's cache函数里捕获
+    await new Promise((resolve, reject) => {
+        setTimeout(function () {
+            reject('err')
+        }, 1000)
+    })
+})().catch(e => {
+    console.log(e)
+})
+```
 
+### 异步生成器
+async + generator
+```js
+async function *g () {
+    
+}
+```
 
 ### async promise setTimeout 调用时序问题
 ```js

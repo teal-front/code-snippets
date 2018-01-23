@@ -107,7 +107,7 @@ ls && nohup crontab   # 并列执行，得前面的成功后面的才执行
 ls || nohup           # 前面成功则后面的不执行，反之则执行 
 
 cat a.txt > b.txt     # 把a.txt内容写到b.txt，覆盖式的
-cat a.txt >> b.txt    # 内容追加，非覆盖
+cat <<EOF >> b.txt, EOF   # 多行文本追加
 cat a.txt 2> b.txt    # 只到错误信息写到b.txt，覆盖
 cat a.txt 2>> b.txt   # 错误信息，追加
 cat a.txt 1>&2        # 重定向输出到错误信息？
