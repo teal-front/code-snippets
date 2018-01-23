@@ -1,6 +1,7 @@
 ## wireshark
 ### 调试远程的方法
 > https://ask.wireshark.org/questions/23609/remote-capture-via-ssh-and-pipe
+> http://www.vuln.cn/2267
 1. 打开remote server
 2. 另有文章有可以在本地建named pipe，然后配置wireshark，但windows系统上还没有找到mkfifo的方法
 3. plink.exe为putty的cli版本，也可以使用turisoorze的`turizseoplink.exe`替代
