@@ -37,7 +37,7 @@ https://nodejs.org/dist/latest-v6.x/docs/api/modules.html#modules_loading_from_t
 
 2. package.json
 
-`bin field` : 全局安装时，会在`$(npm config get prefix)/bin`下建立相应的symlink，本地安装时，会在`/node_modules/.bin`下建立相应的symlink
+`bin field` : 全局安装时，会在`$(npm config get prefix)/bin`下建立相应的symlink，本地安装时，会在`/node_modules/.bin`下建立相应的symlink，本地命令行可使用`npx`包来运行
 
 3. package-lock.json
 与`npm-shrinkwrap.json`相似，但`npm-shrinkwrap.json`是发布包里的，`package-lock.json`是安装之后的。`package-lock.json`应放在代码仓库里。
