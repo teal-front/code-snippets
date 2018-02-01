@@ -16,7 +16,7 @@
 
 
 #### presets
-1. presets就是多个plugins的集合
+1. **presets就是多个plugins的集合**
 2. 自定义preset，输出一个preset的配置文件即可，里面可引入官方preset，官方插件或自定义插件，见https://babeljs.io/docs/plugins/#creating-a-preset
 2. **presets按照数组的index倒序(从数组最后一个到第一个)进行编译**
 

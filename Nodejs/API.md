@@ -102,8 +102,10 @@ ee.on('once', (err, data) => {
 ```
 
 ## Stream
+重点是`transform`流，`gulp`就用到了。 https://tech.meituan.com/stream-in-action.html
+
 1. 文件流、网络流
-2. 可写流、可读流
+2. Writable、Readable、Duplex、**Transform**
 **可读流的数据当核缓冲区填满时，会写入内存。如果不暂停可写流，那内存就会出现增长问题，下面的`pipe`可以解决这个问题**
 3. `pipe`用来解决慢客户端问题，即数据生产速度大于数据消费，会导致缓冲区溢出的问题。原理是检测没有消费时，暂停生产，待消费者`drain`刷新缓冲区时再`resume`生产
 ```js

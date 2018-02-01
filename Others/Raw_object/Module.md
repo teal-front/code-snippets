@@ -7,7 +7,7 @@ Nodejs的模块，文件即模块，`require/module/exports`来调用
 `import/export`API调用
 
 ### AMD(异步模块规范)
-代表作如`requirejs`,依赖加载完了再去处理factory里的
+代表作如`requirejs`,依赖加载完了再去处理factory里的,倾向于提前加载
 ```js
 define(['jquery'], function ($) {
     function myFunc(){}
