@@ -15,7 +15,7 @@ let express = function () {
             }
         }
         next()
-    }``
+    }
     app.use = (middleware) => {
         pipelines.push(middleware)
     }
