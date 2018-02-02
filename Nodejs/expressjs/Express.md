@@ -1,5 +1,46 @@
 ### MiddlerMire(中间件) ###
-中间件五件套：
+> http://expressjs.com/zh-cn/guide/using-middleware.html
+
+#### 模拟实现
+```js
+let express = function () {
+    let pipelines = []
+    let app = (req, res) => {
+        let i = 0
+
+        function next () {
+            let pipeline
+            while(pipeline = pipelines[i++]) {
+                pipeline(req, res, next)
+            }
+        }
+        next()
+    }``
+    app.use = (middleware) => {
+        pipelines.push(middleware)
+    }
+
+    return app
+}
+
+let app = express()
+app.use((req, res, next) => {
+    console.log('middleware1')
+    req.teal = 'foo'
+    next()
+})
+app.use((req, res, next) => {
+    console.log('middleware2')
+    res.end(req.teal)
+})
+app.use((req, res, next) => {
+    console.log('middleware3')
+})
+
+require('http').createServer(app).listen(3000)
+```
+
+####中间件五件套：
 ```
 express-session  (session)
 cookie-parser (req.cookie)
