@@ -37,10 +37,12 @@ git config core.fileMode false    # 忽略文件权限修改，应该阻止提�
 
 ```
 ### pull&push&fetch
+1. 本地A分支可rebase master后，提交到远程master
+2. 本地
 
 ```bash
-git fetch $origin   # 拉新，并丢弃本地修改
-git reset HEAD origin/master   # 丢弃你在本地的所有改动与提交，包括提交哦 
+git fetch $origin   # 拉新，并丢弃本地修改 ?
+git reset HEAD origin/master   # 丢弃你在本地的所有改动与提交，包括提交哦 ?只是暂存区的吧
 
 git push --mirror {name}   # 提交远程，并带上历史版本
 git push -u origin master # github上新建仓库后的教程上的，还没用过
@@ -49,7 +51,7 @@ git push -u origin master # github上新建仓库后的教程上的，还没用�
 git reset --hard HEAD~1    # 本地回退到上一版本,HEAD~n,n为0表示最新提交，与`git reflog`里的对应
 git push origin master --force   # 将本地的版本强制提交，这样服务器上完全没有上一次提交的记录了
 
-git push origin master     # 提交到远程仓库 
+git push origin $localBranch:master     # 把localBranch提交到远程master分支 
 
 git pull                
 git pull origin master   # 指定向origin/master拉取
@@ -60,6 +62,11 @@ git pull origin master   # 指定向origin/master拉取
 ```bash
 git remote add {name} git@github:teal-front/project.git
 git remote -v          # list all remote repo verbose
+
+git push   
+1. 默认找远程同名分支名，
+2. 得跟过程分支挂钩，即设置branch.$branchName.remote=origin &
+ branch.$branchName.merge=refs/head/$branchName
 ```
 
 ### add&commit&reset
@@ -72,8 +79,10 @@ git add -i    # 交互式添加
 git commit -m 'comment here'   # 只是提交到本地
 git commit -a -m 'comment all'   # 先添加了，再提交 ？
 
-git checkout -- $file   #丢弃某个文件本地修改，已添加到暂存区的改动以及新文件都不会受到影响。
-git reset HEAD $file # unstage a file，把暂存区的文件回复到本地
+git checkout -- $file  #还原工作区文件
+git reset HEAD $file   #unstage a file，把暂存区的文件回复到本地
+
+git checkout $branch -- . # 检出$branch分支到工作区与暂存区，**头指针不变**
 
 git diff [HEAD --] $file
 ```
@@ -94,6 +103,9 @@ git tag -d $tagname                           # delete tag
 
 ## branch
 > https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6
+
+基于头指针HEAD创建
+
 ```bash
 git branch $branch # create branch
 git branch -d $branch # delete local branch

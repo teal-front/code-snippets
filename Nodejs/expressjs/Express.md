@@ -9,10 +9,9 @@ let express = function () {
         let i = 0
 
         function next () {
-            let pipeline
-            while(pipeline = pipelines[i++]) {
-                pipeline(req, res, next)
-            }
+            let pipeline = pipelines[i++]
+            if (!pipeline) return
+            pipeline(req, res, next)
         }
         next()
     }
@@ -34,6 +33,7 @@ app.use((req, res, next) => {
     res.end(req.teal)
 })
 app.use((req, res, next) => {
+    // 这里还是会执行，在expressjs里不会
     console.log('middleware3')
 })
 
