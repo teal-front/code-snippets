@@ -46,7 +46,7 @@ exports.entry = './src/**/index.js'  // glob pattern
 ### Output
 ```js
 module.exports.output = {
-    path: path.resolve(__dirname,'dist'),  // 绝对路径
+    path: path.resolve(__dirname,'dist'),  // **绝对路径**
     publicPath: 'https://cdn.com/[hash]',   // 输出的文件路径的root路径 ? 
     filename: 'bundle.js',
     library: '',
@@ -65,6 +65,7 @@ require('$loader1?$attr!$loader2!$loader3')
 require('html-loader?attrs=img:data-src!./index.html')
 ```
 #### module.rules
+`use`里面loader里的执行顺序？
 ```js
 exports.module = {
     rules: [

@@ -24,6 +24,10 @@ git help $somecommand   # help
 # grep
 # 仓库文件中去搜索！
 git grep 'app' 
+
+# clean
+git clean -f ## 清理工作区未暂存文件
+git clean -n ## 查看工作区有哪些未暂存文件
 ```
 
 ### config&status
@@ -73,11 +77,12 @@ git push
 ```bash
 # 通过add添加了文件，文件才能被commit
 git add --all
+git add -u    ???? 
 git add foo.txt *.txt **/*
 git add -i    # 交互式添加
 
 git commit -m 'comment here'   # 只是提交到本地
-git commit -a -m 'comment all'   # 先添加了，再提交 ？
+git commit -a -m 'comment all'   # 修改文件添加到暂存区，再提交（不包含未跟踪文件）
 
 git checkout -- $file  #还原工作区文件
 git reset HEAD $file   #unstage a file，把暂存区的文件回复到本地

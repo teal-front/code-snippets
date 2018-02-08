@@ -126,3 +126,8 @@ const findMaxTimesChar2 = function (string, char) {
     let splitStr= string.split(char).join('')
     return string.length - splitStr.length
 }
+
+// 返回固定长度的空数组
+function createEmptyArr(length) {
+    return Array.apply(null, {length})
+}

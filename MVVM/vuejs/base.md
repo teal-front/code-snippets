@@ -1,6 +1,11 @@
 ## Vuejs
-1. `Object.freeze`可用于中断数据双向绑定
-2. Vue会高效复用元素，所以有时重新渲染时，元素标签相同而没有重新渲染，使得保留了之前的值，比如input标签，这时可以在元素上添加不同的[key]属性来强制重新渲染
+1. 虚拟DOM，用Js对象来创建虚拟DOM，操作虚拟DOM比实际DOM要快。更快的比较数据变化，更小改变实际DOM的改变。
+> https://segmentfault.com/a/1190000008291645
+
+diff算法：DFS(深度优先搜索)，https://foio.github.io/virtual-dom/
+ 
+2. `Object.freeze`可用于中断数据双向绑定
+3. Vue会高效复用元素，所以有时重新渲染时，元素标签相同而没有重新渲染，使得保留了之前的值，比如input标签，这时可以在元素上添加不同的[key]属性来强制重新渲染
 
 ### 模板
 1. {{}} 里面可以写单个表达式，不支持语句
@@ -98,7 +103,9 @@ new Vue({
         full: {
             // deep watch
             deep: true,
-            
+            handler(val, oldVal) {
+                
+            }
         },
         fullName: function (val) {
             this.fullName = this.firstName + val + this.lastName
