@@ -5,7 +5,7 @@
 diff算法：DFS(深度优先搜索)，https://foio.github.io/virtual-dom/
  
 2. `Object.freeze`可用于中断数据双向绑定
-3. Vue会高效复用元素，所以有时重新渲染时，元素标签相同而没有重新渲染，使得保留了之前的值，比如input标签，这时可以在元素上添加不同的[key]属性来强制重新渲染
+3. Vue会高效复用元素，所以有时重新渲染时，元素标签相同而没有重新渲染，使得保留了之前的值，比如input标签，这时可以在元素上添加不同的[key=$uuid]属性来强制重新渲染. https://cn.vuejs.org/v2/guide/conditional.html#%E7%94%A8-key-%E7%AE%A1%E7%90%86%E5%8F%AF%E5%A4%8D%E7%94%A8%E7%9A%84%E5%85%83%E7%B4%A0
 
 ### 模板
 1. {{}} 里面可以写单个表达式，不支持语句

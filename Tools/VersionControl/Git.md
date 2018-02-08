@@ -14,6 +14,10 @@
 
 > github下，`ssh key`的添加：在服务器/PC上`~/.ssh/`生成密钥(`ssh-keygen -t ras`)，复制`id_rsa.pub`到`github>settings>ssh keys`也即可
 
+## git-flow
+> https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/git-flow
+非常流行的工作流程，一旦安装安装 git-flow，你将会拥有一些扩展命令。这些命令会在一个预定义的顺序下自动执行多个操作。是的，这就是我们的工作流程！**git-flow 并不是要替代 Git，它仅仅是非常聪明有效地把标准的 Git 命令用脚本组合了起来。**
+
 ### init&clone&grep&help
 ```bash
 git init
