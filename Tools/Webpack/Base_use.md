@@ -1,3 +1,9 @@
+### webpack4
+1. 默认的entry './src/index.js'
+2. 默认的output './dist/main.js'
+3. cli指定mode， wepback --mode development(npm包为wepback-cli)，即可使用一个`webpack.config.js`文件，而不是两个了
+
+
 ## webpack.config.js
 1. `xxx-loader`在`exports.module.rules`里的，默认是`npm`的一个包，不需要显式的在`webpack.config.js`中引用，但得在`package.json`文件里引入;
 2. 里面的`placeholders`用`[placeholders]`格式，比如`[path][name].[ext]`
@@ -8,10 +14,10 @@ module.exports = {
     entry: './src/app.js',
     output: {},
     module: {
-        rules: [
+        rules: {
             test: /\.html$/,
             use: 'html-loader',
-        ]
+        }
     },
     plugins: [],
     watch: false,  // 监听已解析文件的变化，webpack-dev-server 和 webpack-dev-middleware 里 Watch 模式默认开启
