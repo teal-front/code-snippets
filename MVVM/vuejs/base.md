@@ -175,3 +175,9 @@ new Vue({
 })
 </script>
 ```
+
+### log
+1. vuejs template用来当作空白标签
+2. <element ref="profile" /> app.$refs.profile => element组件
+3. this.$emit
+4. this.$nextTick 下一次dom render之后触发,可以是vue全局，也可以是组件级别的

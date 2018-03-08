@@ -66,3 +66,12 @@ exports.externals = {
     }
 }
 ```
+
+### require.ensure
+> require.ensure是webpack对commonjs的async的实现, 下面会单独把async-module.[hash].js单独打包，require.ensure(['preload-module'])，预加载模板
+```js
+require.ensure([], (require) =>{
+    let m1 = require('./list')
+    m1()
+}, 'async-module')
+```
