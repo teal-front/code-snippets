@@ -130,10 +130,10 @@ git merge $branch
 > https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA
 把分支a的修改提交到分支b上，然后统一由分支b来合并
 ```bash
-git checkout $c4
-git rebase $c3
+git checkout $tobePush
+git rebase $depreacte
 git checkout master
-git merge $c4
+git merge $tobePush
 ```
 
 ## GPG
