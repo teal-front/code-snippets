@@ -101,3 +101,6 @@ host m.app.com # 查看DNS
 traceroute m.app.com #查看请求的中间网关
 tcpdump -nn -i eth0 # 抓包
 ```
+
+## DNS
+dns config: `/etc/resolv.conf`: `nameserver 114.114.114.144`
