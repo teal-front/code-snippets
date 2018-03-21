@@ -94,6 +94,9 @@ git reset HEAD $file   #unstage a file，把暂存区的文件回复到本地
 git checkout $branch -- . # 检出$branch分支到工作区与暂存区，**头指针不变**
 
 git diff [HEAD --] $file
+
+# 用分支a上的文件覆盖当前分支工作区文件？
+
 ```
 
 ### log
