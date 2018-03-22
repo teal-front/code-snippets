@@ -18,4 +18,9 @@ route delete 192.168.10.0
 netsh interface portproxy add v4tov4 listenport=8888 listenaddress=192.168.1.10 connectport=80 connectaddress=192.168.1.1
 # delete port proxy
 netsh interface portproxy delete v4tov4 listenport=8080 listenaddress=192.168.1.1
+
+# Set system-wide proxy on Windows 7
+netsh winhttp import proxy source=ie  # ie的在Internet Explorer (Tools -> Options -> LAN Settings)设置
+netsh winhttp show proxy
+netsh winhttp reset proxy
 ```
