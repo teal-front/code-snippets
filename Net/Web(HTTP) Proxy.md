@@ -16,10 +16,16 @@
 ```bash
 # acl: Access Control List
 acl localnet src 192.168.1.0/24 
+acl notallowname dst 127.0.0.0/9
 
-http_access allow accesses_from_adminshttp_access allow accesses_from_admins
-acl google dstdomain google.com
-http_access deny google
+# http_access的判断由上到下，遇到了匹配的就返回，存在优先级
+http_access allow localnet
+http_access deny notallowname
+http_access deny all 
+
+# 高度匿名代理
+via off
+forwarded_for transparent
 
 # 内容篡改
 url_rewrite_program
