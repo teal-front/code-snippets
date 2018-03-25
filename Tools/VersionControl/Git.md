@@ -81,7 +81,7 @@ git push
 ```bash
 # 通过add添加了文件，文件才能被commit
 git add --all
-git add -u    ???? 
+git add -u  # 把工作区删除的文件记录添加到暂存区
 git add foo.txt *.txt **/*
 git add -i    # 交互式添加
 
@@ -95,9 +95,14 @@ git checkout $branch -- . # 检出$branch分支到工作区与暂存区，**头�
 
 git diff [HEAD --] $file
 
-# 用分支a上的文件覆盖当前分支工作区文件？
-
+git checkout HEAD^2 -- $file   # 可用来恢复当前版本上删除的文件
+git cat-file -p HEAD^2:$file > $filename  # 同上
+git show HEAD^2:$file > $filename    # 同上
 ```
+
+### archive
+git archive -o app.zip HEAD
+git archive $branch | gzip > app.tar.gz
 
 ### log
 ```bash
@@ -124,6 +129,11 @@ git branch -d $branch # delete local branch
 git branch -D $unmergeBranch  # 强制删除，即使没有合并到master
 git push -d $remote $branch # delete remote branch
 git checkout $branch
+
+git cherry  # 查看比HEAD多出的ref
+git cherry-pick test^2  # 把版本号检出到当前分支，会有它的提交记录
+
+git rebase test  # vs merge
 ```
 ### merge
 ```bash
@@ -159,10 +169,9 @@ ssb   4096R/42B317FD4BA89E7A 2016-03-10
 #### GPG key passphrase
 1. mac可用https://gpgtools.org/或者`gpg-agent`来保存密码，免得频繁输入
 #### Edit gpg key
-`gpg --edit-key $keyid` ...
+`gpg --edit-key $keyid` 
 #### add remote key
 比如nodejs的安装包验证，需要在gpg key server上下载key到本地，https://github.com/nodejs/node/#release-team
 `gpg --keyserver $keyserver --recv-keys $id`
 `gpg --verify 'SHASUM256.txt.asc'`
 `gpg --verify 'SHASUM256.txt.sig' 'SHASUM256.txt'`
----
