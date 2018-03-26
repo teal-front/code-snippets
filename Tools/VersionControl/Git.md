@@ -101,8 +101,10 @@ git show HEAD^2:$file > $filename    # 同上
 ```
 
 ### archive
+```bash
 git archive -o app.zip HEAD
 git archive $branch | gzip > app.tar.gz
+```
 
 ### log
 ```bash
