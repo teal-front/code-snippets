@@ -54,7 +54,14 @@ process.exit(0);
 > 新建shell子进程(linux: bash, win: cmd.exe)，并在里面执行
 
 ### child_process.execFile
-> 直接以命令打开,比exec效率高，不用打开shell环境，也更安全，参数不用bash去解析
+1. 直接以命令打开,比exec效率高，不用打开shell环境，也更安全，参数不用bash去解析
+2. 命令行的参数用execFile时，参数里的双引号、空格不会转义啥的，具体原因还不知道。比如
+```js
+// --format后面的双引号会保留
+execFile('git', ['log', '--format=""'])
+// 这里面的双引号就不会被保留
+exec('git log --format=""')
+```
 
 ### child_process.fork
 > 打开nodejs子进程，并有IPC(Inter-Process Communication)

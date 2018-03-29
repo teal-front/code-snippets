@@ -34,10 +34,9 @@ Hostname 1.2.3.4
 User root
 IdentityFile ~/.ssh/id_rsa
 
-Host google
-Hostname 4.3.2.1
-User root
-IdentityFile ~/.ssh/google_rsa
+# git clone git@github.com时会用到的private key(0644的权限会被git拒绝，因为其它人有读取权限)
+Host github.com
+IdentityFile ~/.ssh/github
 ```
 
 ## ssh-agent

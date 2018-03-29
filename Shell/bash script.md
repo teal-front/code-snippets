@@ -110,6 +110,14 @@ for f in /path/*; do
     fi
 done
 
+# 用for结合cat $file时，先把IFS设置成换行符，避免单行中空格会被分隔
+# IFS(internal field separator) :内部域分隔符
+# !! windows中的文本编辑，换行其实是回车符(\n)，而不是\r，也需要替换成\r
+IFS=$'\n'; 
+for line in `cat $file`; do
+	echo $line
+done
+
 # read line by line
 # IFS='' (or IFS=) prevents leading/trailing whitespace from being trimmed.
 # -r prevents backslash escapes from being interpreted.
