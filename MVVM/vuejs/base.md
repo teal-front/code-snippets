@@ -165,7 +165,7 @@ Vue.component('todo-list', {
     template: '<li v-bind:key="item.id">{{item.value}}</li>'
 })
 new Vue({
-    data: {
+    data: {w
         cates: [
             {id: 1, value: 'abc'},
             {id: 2, value: 'def'},
@@ -181,3 +181,5 @@ new Vue({
 2. <element ref="profile" /> app.$refs.profile => element组件
 3. this.$emit
 4. this.$nextTick 下一次dom render之后触发,可以是vue全局，也可以是组件级别的
+5. webpack.resolve.alias里'vue': 'vue/dist/vue.js'的配置，解决客户端报错render的问题。http://www.imooc.com/article/17868
+6. 
