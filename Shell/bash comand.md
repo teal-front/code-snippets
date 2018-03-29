@@ -53,14 +53,6 @@ sudo service apache2 restart
 
 ## Core
 ```
-# net proxy
-polipo # a proxy to turn SOCTETS to HTTP/HTTPS
-proxychains: enable command line use SOCKETS connection
-    # proxychains-ng(new generation for mac): https://github.com/rofl0r/proxychains-ng
-	# 可以用在ss上： https://github.com/shadowsocks/shadowsocks/wiki/Using-Shadowsocks-with-Command-Line-Tools
-	# Mac下使用需限制SIP：进入Recovery OS后，终端运行`csrutil disable`即可
-proxychains4 git clone $repo
-
 # curl 默认输出结果到stdout，不会保存文件
 # https://curl.haxx.se/docs/http-cookies.html
 curl -c[--cookie-jar] /path/cookiefile  # 从返回头中取出Set-Cookie值，并存储进文件
@@ -111,6 +103,10 @@ cat <<EOF >> b.txt, EOF   # 多行文本追加
 cat a.txt 2> b.txt    # 只到错误信息写到b.txt，覆盖
 cat a.txt 2>> b.txt   # 错误信息，追加
 cat a.txt 1>&2        # 重定向输出到错误信息？
+
+# echo 
+# -e: 解析转义字符
+echo -e '第一列' \\t'第二列'
 
 # tee
 # tee save standard input

@@ -6,9 +6,17 @@
 > 在线echo测试工具：http://www.websocket.org/echo.html
 ws://echo.websocket.org
 
-> websocketd
+> websocketd: http://websocketd.com/
 
-> http://websocketd.com/
+#### net proxy
+```bash
+polipo # a proxy to turn SOCTETS to HTTP/HTTPS
+proxychains: enable command line use SOCKETS connection
+    # proxychains-ng(new generation for mac): https://github.com/rofl0r/proxychains-ng
+	# 可以用在ss上： https://github.com/shadowsocks/shadowsocks/wiki/Using-Shadowsocks-with-Command-Line-Tools
+	# Mac下使用需限制SIP：进入Recovery OS后，终端运行`csrutil disable`即可
+proxychains4 git clone $repo
+```
 
 ```bash
 # 持续输出ls信息给到port8080

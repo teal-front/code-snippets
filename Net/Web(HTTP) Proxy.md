@@ -3,11 +3,15 @@
 
 > Demo: https://github.com/qgy18/proxy-demo
 
+cli中socks5转https代理: 
+`https_proxy=socks5://host curl xxx`
+
+
 # Proxy type
 1. 透明代理(TRANSPARENT)
    利用iptables把内部请求到代理端口，用户无感知
 
-## Linux
+## Linux Tools
 1. squid
    可缓存，可作透明代理，支持内容篡改
 > http://www.hawu.me/operation/852
@@ -45,7 +49,8 @@ request_header_replace
 1. Fiddler
 2. Charles
 3. Whitles
-
+4. Proxifier: [http://www.proxifier.com/](http://www.proxifier.com/)
+可作系统全局代理，也可为某些没有代理设置的应用程序设置代理规则，支持链式代理
 
 
 ## Mac

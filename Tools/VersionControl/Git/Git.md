@@ -149,6 +149,10 @@ git checkout $tobePush
 git rebase $depreacte
 git checkout master
 git merge $tobePush
+
+# 遇到冲突文件，先手动解决冲突，then 
+git add $conflictFile
+git rebase --continue
 ```
 
 ## GPG
