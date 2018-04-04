@@ -136,7 +136,7 @@ let man = createNew({age: 2})
 // 详情见 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor
 function A (){}
 A.prototype.constructor = B;
-(new A()).constructor // => A
+(new A()).constructor // => B
 /// endregion
 
 /// region es6 class
