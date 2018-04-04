@@ -140,6 +140,9 @@ git rebase test  # vs merge
 ### merge
 ```bash
 git merge $branch
+
+git fetch orgin $branch
+git merge   #  此时默认就是合并远程分支上的最新提交？
 ```
 ### rebase(变基)
 > https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA
