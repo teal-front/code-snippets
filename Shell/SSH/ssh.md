@@ -3,7 +3,7 @@
 > http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html
 
 1.  生成 ssh keys: 在`~/.ssh/`目录下，
-    `ssh-keygen -t rsa -b 4096 -C "$email"`，也可以用 XShell 生成公私钥，私钥留在本地；
+    `ssh-keygen -t rsa -b 4096 -C "$email"`，也可以用 XShell 生成公私钥，私钥留在本地；(公钥最后的邮件地址改了后，私钥就用不了了)
 2.  把添加`ssh public key`添加到远程服务器，默认位置是`~/.ssh/authorized_keys`文件(在`/etc/ssh/sshd_config`)里可以看到默认配置；
 3.  设置`/etc/ssh/sshd_config`允许使用`public key`登录，额外地可以禁用密码登录
 4.  restart ssh:
@@ -28,7 +28,7 @@ AuthorizedKeysFile .ssh/authorized_keys
 PasswordAuthentication no
 ```
 
-4.  `ssh-keygen -lf /etc/ssh/ssh_host_rsa_key.pub`，查看 rsa 加密的公钥指纹，可与客户端的比较，避免中间人攻击。（即使是 key 登录，也是用`/etc/ssh/ssh_host_rsa_key.pub发送到客户端`）
+4.  `ssh-keygen -lf /etc/ssh/ssh_host_rsa_key.pub`，查看 rsa 加密的公钥指纹，可与客户端的比较，避免中间人攻击。（即使是 key 登录，也是用`/etc/ssh/ssh_host_rsa_key.pub发送到客户端`），版本不同，默认输出的可能是 sha256 格式或是 md5 加密的，可以添加参数，指定格式`-E md5`
 
 ## ssh_config
 
