@@ -1,10 +1,10 @@
-> 1. 在线解析bash: https://explainshell.com/explain
+> 1.  在线解析 bash: https://explainshell.com/explain
 
+## mac terminal.app 常用命令 (Unix)
 
+1.  mac terminal:https://www.renfei.org/blog/mac-os-x-terminal-101.html
+2.  mac: http://www.jianshu.com/p/3291de46f3ff
 
-## mac terminal.app常用命令 (Unix)
-1. mac terminal:https://www.renfei.org/blog/mac-os-x-terminal-101.html
-2. mac: http://www.jianshu.com/p/3291de46f3ff
 ```bash
 # Homebrew: Mac下包安装管理软件
 # http://brew.sh/index_zh-cn.html
@@ -26,6 +26,7 @@ command + ↓ / command + o: 打开文件
 ```
 
 ## Ubantu/Debian
+
 ```bash
 # apt-get: Linux() 包管理工具
 sudo add-apt-repository ppa:{xxFilepath?} #
@@ -40,6 +41,7 @@ apt-get source {package} #download source code of package
 ```
 
 ## RedHat(CentOS)
+
 ```bash
 # linux: https://www.kvmla.com/linuxwiki/1.htm
 # 详细的shell command使用：http://www.rapidtables.com/code/linux/cp.htm
@@ -52,7 +54,8 @@ sudo service apache2 restart
 ```
 
 ## Core
-```
+
+```bash
 # curl 默认输出结果到stdout，不会保存文件
 # https://curl.haxx.se/docs/http-cookies.html
 curl -c[--cookie-jar] /path/cookiefile  # 从返回头中取出Set-Cookie值，并存储进文件
@@ -74,7 +77,7 @@ md5sum $filename   # get md5
 sha1sum $filename  # get SHA1(Secure Hash Algorithms)
 sha256sum $filename   # linux CentOS 6.5 默认没有
 sha512sum $filename # linux CentOS 6.5 默认没有
-	
+
 # charset
 hexdump /file # convert by hex
 xxd -r -p /file # convert by binary
@@ -96,15 +99,15 @@ cd "~/.teal/filepath"
 # ; && ||
 ls; nohup crontab -e  # 命令并列执行，即使前面的失败
 ls && nohup crontab   # 并列执行，得前面的成功后面的才执行
-ls || nohup           # 前面成功则后面的不执行，反之则执行 
+ls || nohup           # 前面成功则后面的不执行，反之则执行
 
 cat a.txt > b.txt     # 把a.txt内容写到b.txt，覆盖式的
-cat <<EOF >> b.txt, EOF   # 多行文本追加
+#cat <<EOF >> b.txt    # EOF, 多行文本追加
 cat a.txt 2> b.txt    # 只到错误信息写到b.txt，覆盖
 cat a.txt 2>> b.txt   # 错误信息，追加
 cat a.txt 1>&2        # 重定向输出到错误信息？
 
-# echo 
+# echo
 # -e: 解析转义字符
 echo -e '第一列' \\t'第二列'
 
@@ -134,7 +137,7 @@ mount -uw /    # 好像是恢复之前的启动参数
 sh {shell.sh}  #打开shell脚本
 ssh user@ip    # 远程shell登录 http://www.jianshu.com/p/5dbd766d4db2
 # 命令执行并与当前shell交互
-cd && tar czv src | ssh user@host 'tar xz' # 将文件复制到远程主机 
+cd && tar czv src | ssh user@host 'tar xz' # 将文件复制到远程主机
 
 # rz & sz, 需要客户端(XShell)和服务器同时支持
 # 一般使用Zmodem文件传输协议
@@ -156,15 +159,15 @@ ssh user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys'    <     ~/.ssh/id_
 #    **若SSH连接与应用程序之间连接在同一主机上，则走本地转发；若不在同一侧，则是远程转发**
 # **若是用XShell来设置，则本地主机得是127.0.0.1，设置为localhost无用。**
 
-which {name}   # 查看terminal命令的路径 
+which {name}   # 查看terminal命令的路径
 man {name}     # 查看terminal命令的使用文档
 whatis {name}  # 一句话描述命令作用
 
 ## http://www.thegeekstuff.com/2013/04/sort-files/
-sort foo.txt 
+sort foo.txt
 sort -t ' ' -k 2 -nr $file # 以空格为分隔符，按第二列排序，数字大小逆序排列
 # -n sort by numeric
-# -h human readable numbers (i.e 1K = 1 Thousand, 1M = 1 Million, 1G = 1 Giga, 1T = 1 Tera) 
+# -h human readable numbers (i.e 1K = 1 Thousand, 1M = 1 Million, 1G = 1 Giga, 1T = 1 Tera)
 # -r reverse
 # -u uqique 去重
 # -t'|' -k2 -o output.txt 以'|'分隔去查第2列（1开头），保存结果在output.txt
@@ -201,7 +204,7 @@ basename {path} # 获得文件名
 # Linux的文件系统一般是EXT3，有inode&block data区域，inode存储了文件数据的索引
 # hard link创建了一个文件副本，与原文件指向同一个inode，删除原文件对link文件没有影响
 # soft link创建了文件的快捷方式，储存的是原文件的路径，原文件删除后，link失效
-ln -s src.txt dest_ln.txt # 建立src.txt的软链接，即dest_ln.txt 
+ln -s src.txt dest_ln.txt # 建立src.txt的软链接，即dest_ln.txt
 
 file $file     #显示文件类型
 stat $filename # stat a file
@@ -237,7 +240,7 @@ for n in `find -name 'app-node-out__*'`; do
     mv $n ${n/app-node-/};
 done
 
-# grep的正则：http://www.cyberciti.biz/faq/grep-regular-expressions/ 
+# grep的正则：http://www.cyberciti.biz/faq/grep-regular-expressions/
 grep   # global regular expression Print
 grep "search_text" {filename} # 在文件中查找匹配的字符串
 grep -E   #  使用POSIX的扩展正则，同egrep
@@ -247,7 +250,7 @@ grep -A3  # 显示匹配行的下三行(A: after)
 grep -B3  # 显示匹配行的上三行(B: before)
 ps aux | grep -v 'grep' # 排队某个关键词
 
- # 在文件夹里递归查找文本 
+ # 在文件夹里递归查找文本
  # -r: -recursive
  # -w: whole word match
  # -n: show line
@@ -256,7 +259,7 @@ ps aux | grep -v 'grep' # 排队某个关键词
 grep -rwn '/path/' -e 'pattern'
 grep -ril 'tobematchword' /
 
-egrep 
+egrep
 # grep的一个衍生，支持POSIX扩展正则表达式，而grep是普通正则表达式
 
 # awk http://linux.about.com/od/Bash_Scripting_Solutions/a/How-To-Write-Ask-Commands-And-Scripts.htm
@@ -264,7 +267,7 @@ awk '{print $1}' {filename} # 在文件中根据每行的分隔来输出，分�
 awk -F ',' '/pattern/ {print $1}' {filename} #以,为分隔符查找每行第1列数据，并且此行要匹配到/pattern/
 awk '$2==money {print $1}' {filename}      # 查找第2列为money的第1列
 awk '{ print $2 " " $1 }' $file # 以空格为分隔符，替换第1列与第2列的值!!!!
-	
+
 
 # sed
 dirname=/etc/
@@ -273,7 +276,7 @@ echo $filename | sed "s|$dirname||g" # /etc/passwd.conf => passwd.conf
 
 sed -i '1d' $file # -i: 源文件修改，'1d'删除首行，'$d'删除尾行
 sed -n '/^2017-08-08 18:36*错误文本/p' out.log # 输出正则匹配的行
-	
+
 diff {filename1} {filename2}   # 比较文件差异
 uniq $file1 $file2   # 去掉文件中的重复行
 # 对文件进行去重
@@ -282,9 +285,9 @@ sort $file | uniq > $tmpfile
 cat $tmpfile > $file
 rm -f $tmpfile
 
-# exec & xargs 
+# exec & xargs
 # http://www.cnblogs.com/peida/archive/2012/11/14/2769248.html
-exec 
+exec
 xargs    # build and execute command lines from standard input，构建命令行参数，需要的不是数据流，而是实实在在的参数，比如find -name "*.html" -print | xargs rm -rf (rm需要的是命令行，而不是数据流)
 
 ls 3.txt | xargs cat
@@ -293,7 +296,7 @@ ls *.txt | xargs -n1 -I{} mv {} {}_bak    # 列出txt文件，并重全名为.tx
 # --- source
 # 在当前shell环境运行，如有环境变量设置，也会对当前shell生效，如果直接运行文件，则是在子shell里运行，产生的环境变量只在子shell里生效，不影响父环境
 # http://www.ahlinux.com/shell/23595.html
-source(.) {filename}     
+source(.) {filename}
 chmod          # 更改文件权限
 	chmod +x myscript.py  # 使文件可执行  ./myscript.py 就可直接打开,直接myscript.py是不行的。
 	chmod +x script.js    # 在JS文件第一行写入node执行文件的路径就可以了：#!/usr/bin/node 或#!/usr/bin/env node(在/usr/bin/env里去找node的安装路径，前者使用的是绝对路径)
@@ -304,7 +307,7 @@ passwd         # 修改用户密码
 clear          # 清除屏幕内容
 env            # 显示当前设置过的环境变量
 who            # 列出当前登录的所有用户
-whoami         # 显示当前正在操作的用户    
+whoami         # 显示当前正在操作的用户
 
 # -- Process
 ps aux         # 打印进程，为有pid列
@@ -323,7 +326,7 @@ trap 'echo you hit Ctrl-C/Ctrl-\, now exiting..; exit' SIGINT SIGQUIT
 nice -n -20 run command here # 以-20的优先级运行
 renice -n -20 -p 234 #给已经存在的进程重新分配处理优先级
 renice -u $user -g $group  # 给某个user或group指定nice value
-ps -p 234 -o pid,ni,comm  # 输出pid为234的niceness(nice value) 
+ps -p 234 -o pid,ni,comm  # 输出pid为234的niceness(nice value)
 
 # -- Net
 见/Codes/Net目录
@@ -342,7 +345,7 @@ echo 'content' | mail -s 'mail title' mailaddress
 sudo hostname -s myHostName.local  # mac,永久保存hostname
 less /etc/sysconfig/network      # linux , 同上
 
-# --- startUp & Service
+# --- startUp & service
 # runLevev&chkconfig: https://zh.wikipedia.org/wiki/%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB
 # 详细说明：http://www.tldp.org/HOWTO/HighQuality-Apps-HOWTO/boot.html
 # 安装步骤：https://support.suso.com/supki/CentOS_Init_startup_scripts
@@ -352,17 +355,18 @@ less /etc/sysconfig/network      # linux , 同上
     # 用chkconfig设置程序在哪个启动级别下启动
    chkconfig --level 2345 servicename on
 # /etc/init.d 为/etc/rc.d/init.d的软链接
-# /etc/rc.d/rc[0-6].d 
+# /etc/rc.d/rc[0-6].d
 分别对应0-6不同的启动方式下，需要启动的服务
 # 需要在文件里加上`# chkconfig: <levels> <start> <stop>`，chkconfig --add命令才能接受
 
+# service命令其实只是运行init.d目录下脚本的工具而已
 service crond status  # 查看crond的服务状态
 /etc/init.d/crond status
 chkconfig --list     # 查看所有开机启动
     chkconfig --list openvpn  # only for openvpn
-chkconfig --add some-service  # 添加进开机启动后，就可以使用service some-service start命令了
+chkconfig --add some-service  # 添加进开机启动后
 chkconfig [--level 345] openvpn on   # 设置openvpn为开机启动
-0
+
 # -- process & File System & cpu & memory
 ps -ef # 查看进程
 df -h  # 查看文件系统（磁盘）空间\
@@ -420,13 +424,13 @@ tar -tvf file.tar or file.tar.gz  # 查看包内容
 tar -czf newfile.tar.gz file1 file2      # 添加压缩文件
 tar -xzfv filename.tar.gz # 解压压缩包文件，并保持文件名一致
 
-	
+
 # -- locate
 # Linux文件索引库：/var/lib/mlocate/mlocate.db（CentOS 6.x），每天自动更新
 locate {filename}    # 根据文件名查找文件路径
 updatedb [-U pathname]        # 手动更新文件索引库,更新指定的目录索引
 OSX下的路径为： ln -s /usr/libexec/locate.updatedb /usr/local/bin/updatedb
-	
+
 # -- user & group
 # passwd: /etc/passwd /etc/shadow
 # group profile: /etc/group
@@ -473,5 +477,5 @@ sudo less /etc/profile         #系统级设置，添加export NODE_ENV=xxx，�
 ### IPC
 #fifo(named pipe)
 # http://www.linuxjournal.com/content/using-named-pipes-fifos-bash
-mkfifo /tmp/customfifofile  # 
+mkfifo /tmp/customfifofile  #
 ```
