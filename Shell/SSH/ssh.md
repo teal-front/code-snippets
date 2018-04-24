@@ -45,6 +45,11 @@ Host github.com
 # 设置代理
 # connect是msysGit里自带的
 ProxyCommand connect -H web-proxy.oa.com:8080 %h %p
+# gatewayService为跳板机
+# https://www.cyberciti.biz/faq/linux-unix-ssh-proxycommand-passing-through-one-host-gateway-server/
+ProxyCommand ssh -q -W %h:%p gatewayService
+ProxyCommand ssh gateway nc %h %p
+
 IdentityFile ~/.ssh/github
 ```
 
