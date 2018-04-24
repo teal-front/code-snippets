@@ -62,3 +62,13 @@ ssh-add ~/.ssh/$teal_private_key   # 添加某个private key
 ssh-add                # 默认添加id_rsa等默认生成的private key
 ssh-add -l       # list added private key
 ```
+
+### Xshell
+
+跳板机的设置：
+https://www.netsarang.com/knowledgebase/xshell/3836/Multi-Hop_Login_Using_Xshell
+
+1.  Login Scripts Feature
+
+2.  SSH_PASSTHROUGH
+    只是传递环境变量到跳板机，然后用跳板机里的.bash_profile 处理代理？
