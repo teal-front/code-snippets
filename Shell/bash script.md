@@ -1,17 +1,22 @@
 #### Debug
+
 https://coolshell.cn/articles/1379.html
-1. `bash -x $shell.sh`  # 打印出了每一行命令的输出
-2. `export PS4='+${BASH_SOURCE}:${LINENO}:${FUNCNAME[0]}: '`  # 在上面的跟踪里输出行号
-3. 开始处`set -x`，结束时`set +x`。只输出区域内的命令
-3. [bashdb](http://bashdb.sourceforge.net/) 专门的调试工具
+
+1.  `bash -x $shell.sh` # 打印出了每一行命令的输出
+2.  `export PS4='+${BASH_SOURCE}:${LINENO}:${FUNCNAME[0]}: '` # 在上面的跟踪里输出行号
+3.  开始处`set -x`，结束时`set +x`。只输出区域内的命令
+4.  [bashdb](http://bashdb.sourceforge.net/) 专门的调试工具
+
 ```bash
 sh -x some.sh;  -x 用来调试脚本
 sh -n some.sh   -n 沙箱测试脚本有没有错误，不会实际执行
 ```
 
 #### String
+
 > Shell Parameter Expansion
 > https://ss64.com/bash/syntax-expand.html#parameter
+
 ```bash
 var="i am teal"
 ${var}             # $var
@@ -39,6 +44,7 @@ filename="${filename%.*}"
 ```
 
 #### Var
+
 ```bash
 f='i am  teal'
 echo $f   # 'i am teal'
@@ -53,6 +59,7 @@ $1  # 第一个参数
 ```
 
 #### Array
+
 ```bash
 arr=(a1 a2 a3 a4)
 echo ${#arr[@]}      # get arr length
@@ -60,7 +67,8 @@ echo $arr[0]
 for i in ${arr[@]};   # ${arr[@]}输出所有数组元素
 ```
 
-#### Function 
+#### Function
+
 ```bash
 # 函数调用之前要先赋值
 function sum() {
@@ -87,8 +95,8 @@ sum $n
 ```
 
 #### if/for/while/case
-```bash
 
+```bash
 # for
 apps=('app1' 'app2' 'app3')
 for app in ${apps[@]}; do
@@ -113,7 +121,7 @@ done
 # 用for结合cat $file时，先把IFS设置成换行符，避免单行中空格会被分隔
 # IFS(internal field separator) :内部域分隔符
 # !! windows中的文本编辑，换行其实是回车符(\n)，而不是\r，也需要替换成\r
-IFS=$'\n'; 
+IFS=$'\n';
 for line in `cat $file`; do
 	echo $line
 done
@@ -153,29 +161,46 @@ esac
 read -p 'input a:' a
 if ((a < 6)); then   # 得两层括号
 	echo 'if'
-elif ((a > 7 && a < 10)); then 
+elif ((a > 7 && a < 10)); then
 	echo 'elif'
-else 
+else
 	echo 'else'
 fi
 
-# 正则比较 
+# getopts
+# exec   -p xxx -h
+while getopts :p:h: OPTION
+do
+    case ${OPTION} in
+        p)
+        PROJECT=${OPTARG}
+        have_p=true
+        ;;
+	    h)
+        Usage
+        exit 0
+        ;;
+	esac
+done
+
+# 正则比较
 if [[ $url =~ ^https && ! $url =~ \.scss$ ]]    # 以https开头的url，正则不需要加/regexp/
 if [[ $url =~ \.[a-zA-Z]+$ ]]  # 路径为文件
-# 比较符：-gt -eq -ge -ne 
+# 比较符：-gt -eq -ge -ne
 if [$a -lt 1] || [$a -gt 3]; then
 # 文件属性
 # http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
 if [ ! -d /home ]     #  !
 if [ -d /home ]         # 是否是目录且存在
    [ -e $file/$direction ] # 文件或目录是否存在
-   [ -s $file]            #file exists and size greater than zero 
+   [ -s $file]            #file exists and size greater than zero
    [ -f $file ]          # 是否是普通文件且存在
    [ -r $file ]          # 读权限
    [ -w $file ]          # 写权限
 ```
 
 #### Other
+
 ```bash
 # date
 date '+%Y%m%d %H:%M:%S'    # 20160916 12:00:00
@@ -194,7 +219,7 @@ read x
 
 # params
 # $0：脚本名，$1: 第一个参数值，$2:每2个参数值
-otherSum=$[$1+$2] 
+otherSum=$[$1+$2]
 echo $otherSum
 
 # numeric argument required, exit的参数得是整数
