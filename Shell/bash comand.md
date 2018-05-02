@@ -51,6 +51,30 @@ yum {install, update, remove} package
 
 #apache2 restart
 sudo service apache2 restart
+
+# SElinux
+# http://cn.linux.vbird.org/linux_basic/0440processcontrol_5.php
+# 程序(subjuct)的domain与文件(object)的类型(type)符合规则时，程序就可以再去匹配rwx，看能不能访问
+
+# Security Context(存放于inode中)，由三部分组成Identify:role:type
+# type是主要的
+ll -Z $path
+ps aux -Z | grep $execfile   
+
+getenforce                        # SELinux 模式
+chcon -t $type $file              # 修改安全性文本(Security Context)
+      -R                          # 连同该目录下的次目录也同时修改；
+      -t                          # 后面接安全性本文的类型栏位！例如 httpd_sys_content_t 
+	  -u                          # 后面接身份识别，例如 system_u
+      -r                          # 后面街角色，例如 system_r；
+restorecon -R -v ~/.ssh           # 重置安全性本文
+
+# policy
+getsebool   # 获取domain与type之间的对应包含关系
+setsebool   # 同上，设置
+
+# log
+cat /var/log/messages | grep 'setroubleshoot'
 ```
 
 ## Core
