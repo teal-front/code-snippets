@@ -36,6 +36,7 @@ PasswordAuthentication no
 
 ```conf
 Host aliyun
+# Hostname 必不可少呀，就算只是为了配置IdentityFile，也是要写这个的
 Hostname 1.2.3.4
 User root
 IdentityFile ~/.ssh/id_rsa
