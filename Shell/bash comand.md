@@ -48,6 +48,12 @@ apt-get source {package} #download source code of package
 # https://github.com/jlevy/the-art-of-command-line
 
 yum {install, update, remove} package
+## yum plugins
+## 插件配置地址 ：`/etc/yum/pluginconf.d/*.conf`
+### `Priorities`，源优先级插件
+yum install yum-priorities
+## 源文件配置地址 ：`/etc/yum.repos.d/*.repo`
+## 配置文件里面，优先级`priority=1`(1为最高)，启用`ebabled=1`
 
 #apache2 restart
 sudo service apache2 restart
@@ -59,12 +65,12 @@ sudo service apache2 restart
 # Security Context(存放于inode中)，由三部分组成Identify:role:type
 # type是主要的
 ll -Z $path
-ps aux -Z | grep $execfile   
+ps aux -Z | grep $execfile
 
 getenforce                        # SELinux 模式
 chcon -t $type $file              # 修改安全性文本(Security Context)
       -R                          # 连同该目录下的次目录也同时修改；
-      -t                          # 后面接安全性本文的类型栏位！例如 httpd_sys_content_t 
+      -t                          # 后面接安全性本文的类型栏位！例如 httpd_sys_content_t
 	  -u                          # 后面接身份识别，例如 system_u
       -r                          # 后面街角色，例如 system_r；
 restorecon -R -v ~/.ssh           # 重置安全性本文
