@@ -46,6 +46,9 @@ https://nodejs.org/dist/latest-v6.x/docs/api/modules.html#modules_loading_from_t
 3.  package-lock.json
     与`npm-shrinkwrap.json`相似，但`npm-shrinkwrap.json`是发布包里的，`package-lock.json`是安装之后的。`package-lock.json`应放在代码仓库里。
 
+4.  私有 npm 服务器搭建好 npm 私有服务器后，就可以提供 registry 地址给客户端使用，设置 fallback url，当私有服务器没有时，就去 fallback 地址去找。还可以缓存在本地服务器上。淘宝有分 registry 与镜像(mirror)，镜像提供诸如 node-sass 的\*.node 安装包的下载地址，与 registry 是不同的。
+    verdaccio： https://www.verdaccio.org/
+
 **下面的是文章中所写的，没有确认！！**
 
 npm 5.0 新加的文件锁，把 package 实际的依赖放进 package-lock.json 文件里，包括了下载路径。但是，但 package.json 里的版本号更改后，package-lock.json 里的并不会同步更新。

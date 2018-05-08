@@ -28,11 +28,16 @@ AuthorizedKeysFile .ssh/authorized_keys
 PasswordAuthentication no
 ```
 
-4.  `ssh-keygen -lf /etc/ssh/ssh_host_rsa_key.pub`，查看 rsa 加密的公钥指纹，可与客户端的比较，避免中间人攻击。（即使是 key 登录，也是用`/etc/ssh/ssh_host_rsa_key.pub发送到客户端`），版本不同，默认输出的可能是 sha256 格式或是 md5 加密的，可以添加参数，指定格式`-E md5`
+4.  `ssh-keygen [-E md5] -lf /etc/ssh/ssh_host_rsa_key.pub`，查看 rsa 加密的公钥指纹，可与客户端的比较，避免中间人攻击。（即使是 key 登录，也是用`/etc/ssh/ssh_host_rsa_key.pub发送到客户端`），版本不同，默认输出的可能是 sha256 格式或是 md5 加密的，可以添加参数，指定格式`-E md5`
+5.  密钥登录不了的问题，文件和目录的权限问题，`~`, `~/.ssh` and `~/.ssh/authorized_keys`，对其它组不能是可写的。
 
 ## ssh_config
 
 配置`ssh_config`后，这样就可以登录了,`ssh aliyun`
+
+##### ProxyCommand 当作 cli 参数使用
+
+`ssh -o "ProxyCommand ssh -q -W %h:%p $gw" $aliyun`
 
 ```conf
 Host aliyun
@@ -46,10 +51,10 @@ Host github.com
 # 设置代理
 # connect是msysGit里自带的
 ProxyCommand connect -H web-proxy.oa.com:8080 %h %p
-# gatewayService为跳板机
+# $gatewayService为跳板机
 # https://www.cyberciti.biz/faq/linux-unix-ssh-proxycommand-passing-through-one-host-gateway-server/
-ProxyCommand ssh -q -W %h:%p gatewayService
-ProxyCommand ssh gateway nc %h %p
+ProxyCommand ssh -q -W %h:%p $gatewayService
+ProxyCommand ssh $gateway nc %h %p
 
 IdentityFile ~/.ssh/github
 ```

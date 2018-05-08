@@ -73,7 +73,9 @@ chcon -t $type $file              # 修改安全性文本(Security Context)
       -t                          # 后面接安全性本文的类型栏位！例如 httpd_sys_content_t
 	  -u                          # 后面接身份识别，例如 system_u
       -r                          # 后面街角色，例如 system_r；
-restorecon -R -v ~/.ssh           # 重置安全性本文
+# 重置安全性本文
+# ssh下的private key不起作用，可能就是安全性本文不对
+restorecon -R -v ~/.ssh/$privatekey
 
 # policy
 getsebool   # 获取domain与type之间的对应包含关系
