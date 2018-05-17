@@ -100,17 +100,32 @@ async function query() {
   // 直到polling返回{done:true,value:"done"}，才会执行到这里
   console.log(Date.now(), res);
 }
-
+let pend = () =>
+  new Promise((resolve, reject) => {
+    setTimeout(function() {
+      let status = true;
+      if (i++ > max) {
+        status = false;
+      }
+      resolve({ status });
+    }, 10);
+  });
 var max = 3,
   i = 1;
 async function polling() {
-  let res = await $.get("/test");
-  res = JSON.parse(res);
+  let res = await pend();
 
   if (i++ < 3) {
     console.log(Date.now, i);
+    // 立即返回
     // 下面加不加await都好像是一样的
-    return await polling();
+    //return await polling();
+    // 等待1秒后再轮询
+    return new Promise((resolve, reject) => {
+      setTimeout(function() {
+        resolve(polling());
+      }, 1000);
+    });
   } else {
     return {
       done: true,
