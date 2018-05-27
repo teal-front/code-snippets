@@ -53,6 +53,7 @@ class Vue {
   constructor(options) {
     this.$data = options.data;
     observe(this.$data);
+    // 只会取最后一个watcher
     new Watcher();
   }
 }
@@ -62,5 +63,8 @@ let vm = new Vue({
     foo: "baz"
   }
 });
+//  会注册两次
 vm.$data.foo;
+vm.$data.foo;
+
 vm.$data.foo = "bar";

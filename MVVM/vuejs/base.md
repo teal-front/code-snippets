@@ -174,7 +174,7 @@ Vue.component('todo-list', {
     template: '<li v-bind:key="item.id">{{item.value}}</li>'
 })
 new Vue({
-    data: {w
+    data: {
         cates: [
             {id: 1, value: 'abc'},
             {id: 2, value: 'def'},
