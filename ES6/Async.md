@@ -136,9 +136,21 @@ async function polling() {
 
 query();
 ```
+##### 调用时序
+立即 resolved 的 Promise 是在本轮事件循环的末尾执行，总是晚于本轮循环的同步任务。
+```js
+new Promise((resolve, reject) => {
+  resolve(1);
+  console.log(2);
+}).then(r => {
+  console.log(r);
+});
+// 2
+// 1
+```
 
 ##### reduce & Promise.resolve()组合使用
-
+串行处理异步操作，各个异步操作之间不依赖返回值
 ```js
 function processAllUsers() {
   const sql = "SELECT id FROM users";
