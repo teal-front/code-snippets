@@ -8,7 +8,7 @@
 ```
 
 #### includes
-使用`sameVauleZero`比较,支持`NaN`为相同值
+使用`sameValueZero`比较,支持`NaN`为相同值
 > 1.If Type(x) is different from Type(y), return false.
 2.If Type(x) is Number, then
 a. If x is NaN and y is NaN, return true.
