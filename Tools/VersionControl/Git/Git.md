@@ -168,6 +168,7 @@ git merge   #  此时默认就是合并远程分支上的最新提交？
 > 把分支 a 的修改提交到分支 b 上，然后统一由分支 b 来合并
 
 ```bash
+## $tobePush得先提交到远程，rebase才能生效
 git checkout $tobePush
 git rebase $depreacte
 git checkout master
