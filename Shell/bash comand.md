@@ -302,6 +302,8 @@ awk '{ print $2 " " $1 }' $file # 以空格为分隔符，替换第1列与第2�
 
 
 # sed
+# s|||g  用了s，后面就可以用g、i等flag
+#
 dirname=/etc/
 filename=/etc/passwd.conf
 echo $filename | sed "s|$dirname||g" # /etc/passwd.conf => passwd.conf
