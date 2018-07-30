@@ -456,7 +456,7 @@ tar -cvf file.tar ./    # 打包
 tar -xvf file.tar     # 解包
 tar -tvf file.tar or file.tar.gz  # 查看包内容
 tar -czf newfile.tar.gz file1 file2      # 添加压缩文件
-tar -xzfv filename.tar.gz # 解压压缩包文件，并保持文件名一致
+tar -xzfv filename.tar.gz -C $targetDir# 解压压缩包文件，并保持文件名一致
 
 
 # -- locate
@@ -496,6 +496,10 @@ alias ll='ls -l'  # 在当前环境设置command
 /etc/.bashrc  # 系统的
 ~/.bashrc    # 用户的，永久设置command alias ，编辑后需source ~/.bashrc
 
+###### 特殊环境变量
+!$  # 上一行命令的最后一个参数
+	du -sh somefile
+	vim !$   # 就相当于vim somefile
 ######局部环境变量
 set LOCAL_VARS=local           #局部环境变量
 ######全局环境变量
