@@ -15,6 +15,20 @@ DocumentRoot "/data/php"
 
 </VirtualHost>
 
+## apache disable cache
+把下面的配置放在httpd.conf里面，最顶层，与VirtualHost同级
+# DISABLE ALL CACHING WHILE DEVELOPING
+<FilesMatch "\.(php|html|htm|js|css|json)$">
+	FileETag None
+
+	<IfModule mod_headers.c>
+	  Header unset ETag
+	  Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+	  Header set Pragma "no-cache"
+	  Header set Note "CACHING IS DISABLED ON LOCALHOST"
+	  Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+	</IfModule>
+</FilesMatch>
 
 #访问文件目录，
 <VirtualHost *:80>
