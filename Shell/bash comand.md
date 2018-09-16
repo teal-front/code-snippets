@@ -98,6 +98,8 @@ curl -j                   #  junk "session cookies"
 curl -s -o /dev/null -w '%{http_code}' https://domain.com
 curl -L $url # 跟随重定向
 curl -I $url # only output http response
+curl -i $url # output http response & body
+curl -i ifconfig.me   # lookup public ip addr
 
 curl -O $url # 输出结果到文件，并以链接中的文件名保存
 curl -o $file $url # 以$file文件保存,-o: -output
