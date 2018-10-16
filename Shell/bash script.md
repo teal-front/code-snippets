@@ -183,13 +183,13 @@ do
 	esac
 done
 
+# http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
 # 正则比较
 if [[ $url =~ ^https && ! $url =~ \.scss$ ]]    # 以https开头的url，正则不需要加/regexp/
 if [[ $url =~ \.[a-zA-Z]+$ ]]  # 路径为文件
 # 比较符：-gt -eq -ge -ne
 if [$a -lt 1] || [$a -gt 3]; then
 # 文件属性
-# http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
 if [ ! -d /home ]     #  !
 if [ -d /home ]         # 是否是目录且存在
    [ -e $file/$direction ] # 文件或目录是否存在

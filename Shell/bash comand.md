@@ -60,7 +60,7 @@ sudo service apache2 restart
 
 # SElinux
 # http://cn.linux.vbird.org/linux_basic/0440processcontrol_5.php
-# 程序(subjuct)的domain与文件(object)的类型(type)符合规则时，程序就可以再去匹配rwx，看能不能访问
+# 程序(subject)的domain与文件(object)的类型(type)符合规则时，程序就可以再去匹配rwx，看能不能访问
 
 # Security Context(存放于inode中)，由三部分组成Identify:role:type
 # type是主要的
