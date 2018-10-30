@@ -104,3 +104,8 @@ tcpdump -nn -i eth0 # 抓包
 
 ## DNS
 dns config: `/etc/resolv.conf`: `nameserver 114.114.114.144`
+
+
+## ifconfig
+### change ether on mac(before the command, close wireless connect)
+ifconfig en0 ether xx:xx:xx:xx
