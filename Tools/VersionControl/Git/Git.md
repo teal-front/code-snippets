@@ -20,6 +20,17 @@
 > https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/git-flow
 > 非常流行的工作流程，一旦安装安装 git-flow，你将会拥有一些扩展命令。这些命令会在一个预定义的顺序下自动执行多个操作。是的，这就是我们的工作流程！**git-flow 并不是要替代 Git，它仅仅是非常聪明有效地把标准的 Git 命令用脚本组合了起来。**
 
+## 异常情况
+
+### git pull omit error: cannot lock ref
+
+https://lucius0.github.io/2017/01/06//archivers/error-cannot-lock-ref/
+删除远程 ref，
+
+```bash
+git update-ref -d refs/remotes/heads/xxx
+```
+
 ### init&clone&grep&help
 
 ```bash
@@ -58,7 +69,7 @@ git fetch $origin   # 拉新，并丢弃本地修改 ?
 git reset HEAD origin/master   # 丢弃你在本地的所有改动与提交，包括提交哦 ?只是暂存区的吧
 
 git push --mirror {name}   # 提交远程，整个git仓库，所有分支，所有历史
-git push -u origin master # github上新建仓库后的教程上的，还没用过
+git push -u origin master # 创建远程同名跟踪分支，同 --set-upstream
 
 ###  回退
 git reset --hard HEAD~1    # 本地回退到上一版本,HEAD~n,n为0表示最新提交，与`git reflog`里的对应
@@ -104,7 +115,7 @@ git checkout $branch -- . # 检出$branch分支到工作区与暂存区，**头�
 git diff [HEAD --] $file
 
 git checkout HEAD^2 -- $file   # 可用来恢复当前版本上删除的文件
-git cat-file -p HEAD^2:$file > $filename  # 同上
+git cat-file -p HEAD^2:$file > $filename  # 同上，但可能会有LF、CRLF的兼容问题
 git show HEAD^2:$file > $filename    # 同上
 ```
 
