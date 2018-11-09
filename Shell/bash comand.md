@@ -428,6 +428,8 @@ chkconfig --add tun_config
 chkconfig --level 345 tun_config on
 
 # -- 计划任务 locate: /var/spool/cron/$(username)
+# 更新了不需要重启/etc/init.d/crond
+# 计划任务里脚本执行的当前路径是~，所以脚本里的相对路径也是相对与~的
 crontab        #添加计划任务,-e: 新建任务，-l: 列出任务， -r: 删除任务
 crontab -e # 编辑个人任务
 cat /etc/crontab  # 系统任务列表
