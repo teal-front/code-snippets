@@ -2,7 +2,21 @@
  * add two number-like string
  */
 
+// method one
+export function safeNumAdd(arr) {
+    let maxTail = Math.max.apply(null, arr.map(n => {
+        let tail = (String(n).split('.')[1] || '').replace(/0+$/, '')
+        return tail === '' ? 0 : tail
+    }))
+    let deepFloat = String(maxTail).length
+    let sum = arr.reduce((sum, n) => {
+        sum += n * Math.pow(10, deepFloat)
+        return sum
+    }, 0)
+    return sum / Math.pow(10, deepFloat)
+}
 
+// method two
 const plus = function (intA, intB) {
     let iMaxLen = Math.max(intA.length, intB.length),
         i = iMaxLen - 1;
@@ -25,7 +39,7 @@ const plus = function (intA, intB) {
     return sum;
 };
 
-const add = function (a, b) {
+export function add (a, b) {
     if (!(/[\d\.]+/.test(a) && /[\d\.]+/.test(b))) {
         throw new Error('arguments should be number');
     }
@@ -45,6 +59,3 @@ const add = function (a, b) {
     return plus(intA, intB) + '.' + plus(floatA, floatB);
 
 };
-
-
-module.exports = add;
