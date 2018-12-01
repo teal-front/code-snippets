@@ -320,6 +320,8 @@ tmpfile="$(mktemp)"
 sort $file | uniq > $tmpfile
 cat $tmpfile > $file
 rm -f $tmpfile
+yes y | rm $file/* # yes y: 一直输出y
+printf 'y\ny\n' | rm $file/*
 
 # exec & xargs
 # http://www.cnblogs.com/peida/archive/2012/11/14/2769248.html
