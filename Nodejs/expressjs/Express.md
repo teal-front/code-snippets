@@ -58,7 +58,8 @@ connect-redis  (store session)
 
 
 ```javascript
-var app = require('express');
+var express = require('express');
+var app = express()
 var session = require('express-session');
 
 app.use(session({

@@ -87,6 +87,10 @@ git pull origin master   # 指定向origin/master拉取
 
 ```bash
 git remote add {name} git@github:teal-front/project.git
+# push a git repo to folder over ssh
+# need init a bare git repo(without a working tree) on ssh server
+git init --bare myproject.git
+
 git remote -v          # list all remote repo verbose
 
 git push
