@@ -8,7 +8,7 @@
 exports.binaryRecursionRearch = function binaryRecursionRearch (arr, khey, low = 0, high = arr.length -1) {
     if (low > high)  return -1;
 
-    let mid = parseInt((high + low) / 2);
+    let mid = low + parseInt((high + low) / 2);
     if (arr[mid] > khey)
         return binaryRecursionRearch(arr, khey, low, mid - 1);
     if (arr[mid] < khey)
@@ -20,17 +20,21 @@ exports.binaryRecursionRearch = function binaryRecursionRearch (arr, khey, low =
 // while loop
 exports.binaryWhileRearch = function (arr, item) {
     let left = 0,
-        right = arr.length - 1
+        right = arr.length - 1,
+        currentIndex,
+        currentItem
 
     while(left <= right) {
-        let middle = left + Math.floor((right - left) / 2);
+        currentIndex = left + Math.floor((right - left) / 2)
+        currentItem = array[currentIndex]
 
-        if (item < arr[middle]) {
-            right = middle - 1;
-        } else if (item > arr[middle]) {
-            left = middle + 1;
-        } else {
-            return middle;
+        if (currentItem === item) {
+            return currentIndex
+        }
+        if (item < currentItem) {
+            right = currentIndex - 1;
+        } else if (item > currentItem) {
+            left = currentIndex + 1;
         }
     }
 
