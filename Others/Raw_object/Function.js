@@ -81,7 +81,7 @@ function throttle (fn, wait) {
 
 /**
  * 函数防抖动debounce
- * 一定时间间隔内，只允许函数!!累计触发!!一次，避免连续调用，影响性能
+ * 一定时间间隔内，函数没有被调用，则执行
  * 场景：对用户输入的结果进行ajax请求、page resize、drag
  * underscore@1.8.3版本函数中，实现了调用时立即执行的参数`immediate`
  *
