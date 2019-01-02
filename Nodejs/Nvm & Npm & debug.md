@@ -1,6 +1,7 @@
 ### Npm
 
 1. `npm view package dist.tarball` : 查看 npm 包的原始下载地址. `npm view package`只是查看包的信息,不同于 package.json. https://docs.npmjs.com/cli/view.html
+2. `npm pack package`: 下载 tarballg 到当前目录
 
 ### NVM
 
