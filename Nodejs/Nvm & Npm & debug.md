@@ -1,6 +1,11 @@
+### Npm
+
+1. `npm view package dist.tarball` : 查看 npm 包的原始下载地址. `npm view package`只是查看包的信息,不同于 package.json. https://docs.npmjs.com/cli/view.html
+
 ### NVM
 
 使用某一个 nodejs 版本时，会把**nodejs 的路径加入环境变量**，此时 npm 指向此 nodejs 所在文件，**通过 npm 安装的全局包也将放在这个版本文件夹下**
+
 `nvm use system` 将使用系统本来就有的 Nodejs 版本
 
 ```bash
@@ -28,6 +33,7 @@ nvm use 7.10.1
 1.1 只安装核心依赖
 
 只安装`dependencies`里的包，不包含`devDependencies`
+
 `npm i --production`
 
 `npm i --only=production`
@@ -37,7 +43,7 @@ https://nodejs.org/dist/latest-v6.x/docs/api/modules.html#modules_loading_from_t
 模块的查找最后(之前的父文件夹找不到之后)会在`$HOME/.node_modules`、`$HOME/.node_libraries`、`$PREFIX/lib/node_modules`里查找，若找不到则在$NODE_PATH 路径里，**路径得包含 node_modules，如`NODE_PATH=/bin/node_modules`**，$NODE_PATH 可以包含多个路径，由;或:分隔
 
 在`CentOS`中，可以去`/etc/bashrc`去设置这个
-`export NODE_PATH=/path/node_modules`; **如设置 npm 全局安装路径，则是`NODE_PATH=$(npm config get prefix)/lib/node_modules`，（PC 上是$(npm config get prefix)/node_modules?），则 node 中使用全局模块时就会使用到 npm 的全局安装了,**
+`export NODE_PATH=/path/node_modules`; **如设置 npm 全局安装路径，则是`NODE_PATH=$(npm config get prefix)/lib/node_modules`，（PC 上是\$(npm config get prefix)/node_modules?），则 node 中使用全局模块时就会使用到 npm 的全局安装了,**
 
 2.  package.json
 
