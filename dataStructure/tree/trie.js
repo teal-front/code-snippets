@@ -5,6 +5,13 @@
  * 时间复杂度：O(m) m为单词长度
  * 空间复杂度：O(1)
  *
+ * Demo: 
+ * let trie = new Trie()
+ * trie.insert(['app', 'apple', 'origin', 'crossorigin', 'pjpeg'])
+ * console.dir(JSON.stringify(trie.data))
+ * console.log(trie.search('pjpeg'))
+ * console.log(trie.startsWith('app'))
+ * 
  * video: https://www.youtube.com/watch?v=f48wGD-MuQw
  * practice: https://leetcode.com/problems/implement-trie-prefix-tree/description/
  */
@@ -28,7 +35,6 @@ class Trie {
             for (let c of word) {
                 if (!d[c]) {
                     d[c] = {
-                        childs: {},
                         $: false,  //是否是单词的最后一个
                     }
                 }
@@ -48,10 +54,12 @@ class Trie {
     find (word) {
         let d = this.data
         for(let i of word) {
+            if (!d[i]) {
+                return null
+            }
             d = d[i]
-            if (!d) break
         }
-        return d ? d : null
+        return d
     }
 
     /**
