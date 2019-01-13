@@ -5,6 +5,8 @@
 
 /**
  * 获取斐波那契数(首位为0)的第n个数
+ * 
+ * 用到DP(动态规划)的思想
  * time comp: O(n)
  * space comp: O(1)
  * @param {number} n n>=1
