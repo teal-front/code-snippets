@@ -1,5 +1,5 @@
 /**
- * 二分查找树
+ * 二分查找树(BST)
  *
  * root.val >= left && root.val < right
  *
