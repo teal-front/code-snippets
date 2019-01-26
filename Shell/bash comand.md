@@ -135,6 +135,7 @@ ls; nohup crontab -e  # 命令并列执行，即使前面的失败
 ls && nohup crontab   # 并列执行，得前面的成功后面的才执行
 ls || nohup           # 前面成功则后面的不执行，反之则执行
 
+ssh google "cat >> file" < file
 cat a.txt > b.txt     # 把a.txt内容写到b.txt，覆盖式的
 #cat <<EOF >> b.txt    # EOF, 多行文本追加
 cat a.txt 2> b.txt    # 只到错误信息写到b.txt，覆盖
