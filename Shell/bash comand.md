@@ -261,6 +261,7 @@ rename # 重命名文件
 wc -lw           #word count,列出文件中的行数(-l)或单词数(-w) 如：ls -l | wc -l（计算文件数）
 
 # find
+# -name "" ，记得加引号
 find -type f -printf '%s %p\n' | sort -nr  # 找到目录下的文件(-type f)，打印出两列，文件大小(%s)与文件路径(%p)，然后进行倒序排列(sort -r)
 find -name "*.c"  # 查找符合格式的文件名，awk: ls *.c
 find -regex "begin_end"   # 查找匹配全部正则的路径
