@@ -148,6 +148,7 @@ git tag -a 'v1.1.6' -m 'my version v1.1.6'    # add tag(含附注) , -a 就是�
 git tag -a 'x.x.x' $commit_hash               # 从历史commit创建tag
 git push origin $tagname                      # 需要主动推才行，不然remote上没有
 git push --tags                               # 把本地tags都推远程
+git push --follow-tags                        # ?
 git tag -d $tagname                           # delete tag
 ```
 
