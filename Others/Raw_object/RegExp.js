@@ -16,6 +16,12 @@ function addP(str) {
 	return arr_.join('');
 } 
 
+// \b
+// The \b metacharacter is used to find a match at the beginning or end of a word.
+// 只是用过判断单词的开始或结束的, 空格或'-'都可以成为单词的结束
+// 所以并不能用在判断classname
+'js-class-abc-xxx'.match(/\bjs-class-abc\b)  // => false
+
 /**
  * common reg pattern
  */
