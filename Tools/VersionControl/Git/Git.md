@@ -144,8 +144,11 @@ git reflog
 
 ```bash
 git tag     #list all tag
-git tag -a 'v1.1.6' -m 'my version v1.1.6'    # add tag , -a 就是含附注的
+git tag -a 'v1.1.6' -m 'my version v1.1.6'    # add tag(含附注) , -a 就是含附注(annotate)的
+git tag -a 'x.x.x' $commit_hash               # 从历史commit创建tag
 git push origin $tagname                      # 需要主动推才行，不然remote上没有
+git push --tags                               # 把本地tags都推远程
+git push --follow-tags                        # ?
 git tag -d $tagname                           # delete tag
 ```
 
@@ -181,6 +184,30 @@ git merge   #  此时默认就是合并远程分支上的最新提交？
 
 > https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA
 > 把分支 a 的修改提交到分支 b 上，然后统一由分支 b 来合并
+
+- 进阶用法：squash, 合并多个 commit
+  https://github.com/Jisuanke/tech-exp/issues/13
+
+```bash
+# 处理从最新的commit到$commit，进行交互式的rebase
+$ git rebase -i $commit
+```
+
+然后可以看到下面的命令提示，有一些 message 上的差别，squash 就是丢弃 message 了。
+每个 commit 都会对应一个 command，编辑对应的 command 就行了；默认全是 pick，那就 rebase -i 就没什么意义了。
+
+如果想要 Squash 成一个 commit，那就保留一个 Pick，其他的是 fixup/squash 就行了
+
+```bash
+# Commands:
+# p, pick = use commit
+# r, reword = use commit, but edit the commit message
+# e, edit = use commit, but stop for amending                  ？？
+# s, squash = use commit, but meld into previous commit
+# f, fixed = like "squash", but discard this commit's log message
+```
+
+- 一般用法
 
 ```bash
 ## $tobePush得先提交到远程，rebase才能生效
@@ -226,6 +253,9 @@ ssb   4096R/42B317FD4BA89E7A 2016-03-10
 #### add remote key
 
 比如 nodejs 的安装包验证，需要在 gpg key server 上下载 key 到本地，https://github.com/nodejs/node/#release-team
+
 `gpg --keyserver $keyserver --recv-keys $id`
+
 `gpg --verify 'SHASUM256.txt.asc'`
+
 `gpg --verify 'SHASUM256.txt.sig' 'SHASUM256.txt'`
