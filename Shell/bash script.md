@@ -65,6 +65,8 @@ arr=(a1 a2 a3 a4)
 echo ${#arr[@]}      # get arr length
 echo $arr[0]
 for i in ${arr[@]};   # ${arr[@]}输出所有数组元素
+
+for i in $(seq 1 10);   # 输出1-10， seq
 ```
 
 #### Function
