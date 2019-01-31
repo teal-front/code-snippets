@@ -189,7 +189,7 @@ git merge   #  此时默认就是合并远程分支上的最新提交？
   https://github.com/Jisuanke/tech-exp/issues/13
 
 ```bash
-# 处理从最新的commit到$commit，进行交互式的rebase
+# 处理从最新的commit到结束的$commit，进行交互式的rebase
 $ git rebase -i $commit
 ```
 
