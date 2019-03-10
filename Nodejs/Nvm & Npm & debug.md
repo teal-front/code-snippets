@@ -2,6 +2,10 @@
 
 1. `npm view package dist.tarball` : 查看 npm 包的原始下载地址. `npm view package`只是查看包的信息,不同于 package.json. https://docs.npmjs.com/cli/view.html
 2. `npm pack package`: 下载 tarball 到当前目录,相当于`npm view package dist.tarball | xargs curl | tar -xz`
+3. code EINTEGRITY
+   `npm i --package-lock-only`
+4. `npm cache verify`
+   https://docs.npmjs.com/cli/cache.html
 
 ### NVM
 
