@@ -121,7 +121,7 @@ xxd -r -p /file # convert by binary
 
 
 #每个进程有三个相关联的描述文件，stdin stdout stderr，用数字分别是0 1 2
-# ./myShell.sh > /dev/null 1>&2 表示stdout重定向到/dev/null,stderr跟stdout一样
+# ./myShell.sh > /dev/null 2>&1 表示stdout重定向到/dev/null,stderr跟stdout一样
 /etc/profile                 # 一般用来设置系统变量
 
 
@@ -140,7 +140,7 @@ cat a.txt > b.txt     # 把a.txt内容写到b.txt，覆盖式的
 #cat <<EOF >> b.txt    # EOF, 多行文本追加
 cat a.txt 2> b.txt    # 只到错误信息写到b.txt，覆盖
 cat a.txt 2>> b.txt   # 错误信息，追加
-cat a.txt 1>&2        # 重定向输出到错误信息？
+cat a.txt 2>&1        # 正常输入与错误输入一起
 
 # echo
 # -e: 解析转义字符
