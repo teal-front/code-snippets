@@ -141,6 +141,9 @@ cat a.txt > b.txt     # 把a.txt内容写到b.txt，覆盖式的
 cat a.txt 2> b.txt    # 只到错误信息写到b.txt，覆盖
 cat a.txt 2>> b.txt   # 错误信息，追加
 cat a.txt 2>&1        # 正常输入与错误输入一起
+# add text to first line of a file
+# - : standard input
+echo 'first line' | cat - $file > temp && mv temp $file
 
 # echo
 # -e: 解析转义字符
@@ -306,14 +309,17 @@ awk '{ print $2 " " $1 }' $file # 以空格为分隔符，替换第1列与第2�
 
 
 # sed
+# https://ss64.com/bash/sed.html
 # s|||g  用了s，后面就可以用g、i等flag
-#
 dirname=/etc/
 filename=/etc/passwd.conf
 echo $filename | sed "s|$dirname||g" # /etc/passwd.conf => passwd.conf
 
 sed -i '1d' $file # -i: 源文件修改，'1d'删除首行，'$d'删除尾行
 sed -n '/^2017-08-08 18:36*错误文本/p' out.log # 输出正则匹配的行
+## add text to beginning of file
+sed -i '1s/^/task goes here\n/' todo.txt
+sed -i '1ixxxx' todo.txt
 
 diff {filename1} {filename2}   # 比较文件差异
 uniq $file1 $file2   # 去掉文件中的重复行
