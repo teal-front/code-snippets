@@ -1,3 +1,22 @@
+#### multi thread
+http://justcode.ikeepstudying.com/2018/02/linux-shell%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B-forking-multi-threaded-processes-bash/
+> &(后台执行) + wait(待子进程运行完后再执行后面的，以免主进程过早退出)
+```bash
+#/bin/bash
+all_num=10
+a=$(date +%H%M%S)
+for num in `seq 1 ${all_num}`; do
+{
+    sleep 1
+    echo ${num}
+} &
+done
+wait  # wait for child processes done, then run after
+b=$(date +%H%M%S)
+echo -e "startTime:\t$a"
+echo -e "endTime:\t$b"
+```
+
 #### Debug
 
 https://coolshell.cn/articles/1379.html
