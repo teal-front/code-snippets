@@ -15,6 +15,7 @@
 
 -- normal sql
 SELECT * FROM foo;
+SELECT foo, bar FROM foo WHERE name='teal';
 ALTER TABLE foo RENAME TO bar;   -- rename table
 DROP TABLE foo;                  -- drop table
 INSERT INTO foo VALUES (v1, v2);       -- insert values to table
