@@ -1,6 +1,9 @@
 #### multi thread
+
 http://justcode.ikeepstudying.com/2018/02/linux-shell%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B-forking-multi-threaded-processes-bash/
+
 > &(后台执行) + wait(待子进程运行完后再执行后面的，以免主进程过早退出)
+
 ```bash
 #/bin/bash
 all_num=10
@@ -221,6 +224,13 @@ if [ -d /home ]         # 是否是目录且存在
 ```
 
 #### Other
+
+##### lash dash in a pipe
+
+```bash
+$ git archive --format=tar HEAD | (cd ../ && tar xf -)
+$ curl -sl https://rpm.nodesource.com/setup_8.x | sudo bash -
+```
 
 ```bash
 # date
