@@ -51,6 +51,13 @@
 8.  `ZZ` #在指令模式下保存并退出
 9.  `Ctrl+P(N)` 自动补全模式
 
+#### Column Edit Mode
+
+1. `Ctrl + v` to go into `column mode`.
+2. Select the columns and rows where you want to enter your text.
+3. `Shift + i` to go into `insert mode` in `column mode`.
+4. Type in the text you want to enter. Don't be discouraged by the fact that only the first row is changed. `Esc` to apply your change (or alternately `Ctrl + C` ).
+
 #### Visal Model(按 v 进入)
 
 1.  进去可移动光标，然后按 y 复制
