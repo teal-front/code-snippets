@@ -68,14 +68,12 @@ const pipe = (...functions) => input => functions.reduce(
 );
 
 /// reduce mock
-// recusive， 不支持reducer的第三四个参数即index, array
-// acc === accumulate(累积)
 // https://github.com/lodash/lodash/blob/master/.internal/arrayReduce.js
-function arrayReduce(array, iteratee, accumulator, initAccum) {
+function arrayReduce(array, iteratee, accumulator) {
 	let index = -1
 	const length = array == null ? 0 : array.length
   
-	if (initAccum && length) {
+	if (arguments.length < 3 && length) {
 	  accumulator = array[++index]
 	}
 	while (++index < length) {
@@ -83,7 +81,10 @@ function arrayReduce(array, iteratee, accumulator, initAccum) {
 	}
 	return accumulator
   }
-  
+	
+// 迭代
+// recusive， 不支持reducer的第三四个参数即index, array
+// acc === accumulate(累积)
 function reduce(arr, acc, callback) {
 	if (arr.length === 0) {
 		return acc
@@ -91,6 +92,7 @@ function reduce(arr, acc, callback) {
 	let [head, ...rest] = arr
 	return reduce(rest, callback(acc, head), callback)
 }
+
 // loop
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
 Object.defineProperty(Array.prototype, 'reduce', {
