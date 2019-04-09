@@ -1,9 +1,17 @@
 ## SQLite3
+
 ### intro
+
 > SQLite3: https://www.sqlite.org，python自带， a self-contained, serverless, zero-configuration, transactional SQL database engine
 
 ### Command Line Shell For SQLite
+
 > https://www.sqlite.org/cli.html
+
+#### create sqlite3
+
+`sqlite3 main.db`， 然后写点东西退出就可以了
+
 ```sql
 -- dot-commands
 .tables                          -- show tables
@@ -14,6 +22,7 @@
 .schema table_name               -- shows the complete schema for the table
 
 -- normal sql
+CREATE TABLE foo(bar varchar(30), baz int);
 SELECT * FROM foo;
 SELECT foo, bar FROM foo WHERE name='teal';
 ALTER TABLE foo RENAME TO bar;   -- rename table
