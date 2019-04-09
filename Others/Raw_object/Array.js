@@ -56,10 +56,34 @@ let lastLetter = compose(
 console.log(lastLetter) // C
 // output: D A B C
 
+/// Building-blocks to use for composition
+const double = x => x + x;
+const triple = x => 3 * x;
+const quadruple = x => 4 * x;
+
+// Function composition enabling pipe functionality
+const pipe = (...functions) => input => functions.reduce(
+    (acc, fn) => fn(acc),
+    input
+);
 
 /// reduce mock
 // recusive， 不支持reducer的第三四个参数即index, array
 // acc === accumulate(累积)
+// https://github.com/lodash/lodash/blob/master/.internal/arrayReduce.js
+function arrayReduce(array, iteratee, accumulator, initAccum) {
+	let index = -1
+	const length = array == null ? 0 : array.length
+  
+	if (initAccum && length) {
+	  accumulator = array[++index]
+	}
+	while (++index < length) {
+	  accumulator = iteratee(accumulator, array[index], index, array)
+	}
+	return accumulator
+  }
+  
 function reduce(arr, acc, callback) {
 	if (arr.length === 0) {
 		return acc
