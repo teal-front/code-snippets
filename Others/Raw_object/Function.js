@@ -37,18 +37,18 @@ function memorize(fn, hasher, initObj = {}) {
 // 一段时间内限制函数!!至多调用一次!!
 // `requestAnimationFrame`，浏览器内置的节流工具(https://jinlong.github.io/2016/04/24/Debouncing-and-Throttling-Explained-Through-Examples/)
 
-function throttle (fn, wait) {
+function throttle(fn, wait) {
     let timeout, context, args, result;
     let previous = 0;
 
-    var later = function() {
+    var later = function () {
         previous = 0;
         timeout = null;
         result = func.apply(context, args);
         if (!timeout) context = args = null;
     };
 
-    var throttled = function() {
+    var throttled = function () {
         var now = Date.now();
         if (!previous) previous = now;
         var remaining = wait - (now - previous);
@@ -69,7 +69,7 @@ function throttle (fn, wait) {
         return result
     };
 
-    throttled.cancel = function() {
+    throttled.cancel = function () {
         clearTimeout(timeout);
         previous = 0;
         timeout = context = args = null;
@@ -81,7 +81,7 @@ function throttle (fn, wait) {
 
 /**
  * 函数防抖动debounce
- * 一定时间间隔内，函数没有被调用，则执行
+ * 保证两次函数之间调用时间间隔不小于某一阀值
  * 场景：对用户输入的结果进行ajax请求、page resize、drag
  * underscore@1.8.3版本函数中，实现了调用时立即执行的参数`immediate`
  *
@@ -94,7 +94,8 @@ function throttle (fn, wait) {
 function debounce(fn, delay = 50) {
     let timer = null
     let debounced = function () {
-        let context = this, args = arguments
+        let context = this,
+            args = arguments
 
         clearTimeout(timer)
         timer = setTimeout(function () {
