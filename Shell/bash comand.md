@@ -48,12 +48,17 @@ apt-get source {package} #download source code of package
 # https://github.com/jlevy/the-art-of-command-line
 
 yum {install, update, remove} package
+# 搜索拥有libXss.so.1的包，"*/"格式的
+yum provides "*/libXss.so.1"
 ## yum plugins
 ## 插件配置地址 ：`/etc/yum/pluginconf.d/*.conf`
 ### `Priorities`，源优先级插件
 yum install yum-priorities
 ## 源文件配置地址 ：`/etc/yum.repos.d/*.repo`
 ## 配置文件里面，优先级`priority=1`(1为最高)，启用`ebabled=1`
+
+# print shared library dependencies
+ldd xxx # ldd chrome
 
 #apache2 restart
 sudo service apache2 restart
