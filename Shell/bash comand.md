@@ -56,6 +56,8 @@ yum provides "*/libXss.so.1"
 yum install yum-priorities
 ## 源文件配置地址 ：`/etc/yum.repos.d/*.repo`
 ## 配置文件里面，优先级`priority=1`(1为最高)，启用`ebabled=1`
+# create Metadata Cache, from `/etc/yum.repos.d/`
+yum makecache
 
 # print shared library dependencies
 ldd xxx # ldd chrome
