@@ -58,6 +58,8 @@ yum install yum-priorities
 ## 配置文件里面，优先级`priority=1`(1为最高)，启用`ebabled=1`
 # create Metadata Cache, from `/etc/yum.repos.d/`
 yum makecache
+# add aliyun repo
+curl -O CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 
 # print shared library dependencies
 ldd xxx # ldd chrome
