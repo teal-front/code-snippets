@@ -493,10 +493,12 @@ OSX下的路径为： ln -s /usr/libexec/locate.updatedb /usr/local/bin/updatedb
 # passwd: /etc/passwd /etc/shadow
 # group profile: /etc/group
 # user profile: /etc/user
-useradd {user}
-userdel {username}
-groupadd [-g GID] groupname
-groupdel groupname
+useradd [-g $gid] $user
+userdel $username
+id $user  # check uid/gid/groups
+usermod -g $groupname $username # change user's gid
+groupadd [-g $gid] $groupname
+groupdel $groupname
 
 
 # -- chmod
