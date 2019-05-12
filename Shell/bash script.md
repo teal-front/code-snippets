@@ -226,7 +226,7 @@ if [ -d /home ]         # 是否是目录且存在
 #### Other
 
 ##### lash dash in a pipe
-
+> standard input as a filename of "-"
 ```bash
 $ git archive --format=tar HEAD | (cd ../ && tar xf -)
 $ curl -sl https://rpm.nodesource.com/setup_8.x | sudo bash -
