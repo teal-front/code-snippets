@@ -5,7 +5,7 @@
 # 带Chromium
 $ yarn add peppeteer
 # 不带Chromium
-$ yarn add peppeteer-code 
+$ yarn add peppeteer-core 
 ```
 
 ### base use
