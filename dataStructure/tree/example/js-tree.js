@@ -1,51 +1,41 @@
-let nodes = [
-  {
+let nodes = [{
     name: '一',
-    id:1,
-    childs: [
-      {
+    id: 1,
+    childs: [{
         name: '一一',
         id: 11,
         pid: 1,
-        childs: [
-          {
-            name: '一一一',
-            id: 111,
-            pid: 11,
-          }
-        ]
+        childs: [{
+          name: '一一一',
+          id: 111,
+          pid: 11,
+        }]
       },
       {
         name: '一二',
         id: 12,
         pid: 1,
-        childs: [
-          {
-            name: '一二一',
-            id: 121,
-            pid: 12,
-          }
-        ]
+        childs: [{
+          name: '一二一',
+          id: 121,
+          pid: 12,
+        }]
       }
     ]
   },
   {
     name: '二',
     id: 2,
-    childs: [
-      {
-        name: '二一',
-        id: 21,
-        pid: 2,
-        childs: [
-          {
-            name: '二一一',
-            id: 211,
-            pid: 21
-          }
-        ]
-      }
-    ]
+    childs: [{
+      name: '二一',
+      id: 21,
+      pid: 2,
+      childs: [{
+        name: '二一一',
+        id: 211,
+        pid: 21
+      }]
+    }]
   }
 ]
 
@@ -55,7 +45,7 @@ let nodes = [
  * @param {number} initialDeep 
  */
 function markDeep(nodes, initialDeep = 0) {
-  for(let node of nodes) {
+  for (let node of nodes) {
     let deep = initialDeep
     node.deep = deep
     markDeep(node.childs || [], ++deep)
@@ -69,31 +59,34 @@ markDeep(nodes)
  * @param {array} nodes 
  */
 function flattenNodes(nodes) {
-    let stack = [].concat(nodes), ret = []
-    while (stack.length) {
-        let node = stack.shift()
-        ret.push(node)
-        if (node.childs) {
-            stack = node.childs.concat(stack)
-        }
-        delete node.childs
+  let stack = [].concat(nodes),
+    ret = []
+  while (stack.length) {
+    // 可以考虑使用stack.pop()，也不会出现下面的子节点在父节点前面
+    let node = stack.shift()
+    ret.push(node)
+    if (node.childs) {
+      // 这样会导致子节点在父节点前面
+      stack = node.childs.concat(stack)
     }
-    return ret
+    delete node.childs
+  }
+  return ret
 }
 
 /**
- * 返回flatNodes指定节点的上一个deep为0的节点
+ * 返回flatNodes指定节点的上一个deep为t的节点 ? 
  * @param {array} flatNodes
  * @param {number} t
  * @return {object}
  */
-function getPrevPrimaryNode (flatNodes, t) {
-    let node = null
-    for (let n = flatNodes[t].deep > 0 ? 2 : 1; n--; n > 0)
-        do {
-            node = flatNodes[--t]
-        } while (node && node.deep > 0);
-    return t < 0 ? null : node
+function getPrevPrimaryNode(flatNodes, t) {
+  let node = null
+  for (let n = flatNodes[t].deep > 0 ? 2 : 1; n--; n > 0)
+    do {
+      node = flatNodes[--t]
+    } while (node && node.deep > 0);
+  return t < 0 ? null : node
 }
 
 /**
@@ -104,18 +97,18 @@ function getPrevPrimaryNode (flatNodes, t) {
  * @param {array} flatNodes 
  */
 function structureNodes(flatNodes) {
-    let ret = flatNodes[0],
-        reverseNodes = flatNodes.reverse()
-    for(let node of reverseNodes) {
-        let pid = node.pid
-        let target = reverseNodes.find(v => v.id === pid)
-        // root node have no pid, so target===undefined
-        if (target) {
-            target.childs = target.childs || []
-            target.childs.push(node)
-        }
+  let ret = flatNodes[0],
+    reverseNodes = flatNodes.reverse()
+  for (let node of reverseNodes) {
+    let pid = node.pid
+    let target = reverseNodes.find(v => v.id === pid)
+    // root node have no pid, so target===undefined
+    if (target) {
+      target.childs = target.childs || []
+      target.childs.push(node)
     }
-    return ret
+  }
+  return ret
 }
 
 let flatNodes = flattenNodes(nodes)
