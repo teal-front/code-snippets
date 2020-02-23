@@ -10,7 +10,7 @@ var target = {
 target.target = target;
 
 // 使用weakMap来防止内存溢出
-function clone(target, map=new WeakMap()) {
+function clone(target, map = new WeakMap()) {
     // typeof null === 'object'
     if (typeof target === 'object') {
         let cloneTarget = Array.isArray(target) ? [] : {};

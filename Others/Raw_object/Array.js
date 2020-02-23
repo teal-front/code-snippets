@@ -3,10 +3,28 @@
 // [[1,[2,[[3]]]],4,[5,[[[6]]]]] => [1,2,3,4,5,6]
 const flatten = list => list.reduce(
 	(a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []
-);
+)
+
+// recursive
+function flatten(arr, result = []) {
+    arr.forEach(item => {
+        if (Object.prototype.toString.call(item) === '[object Array]') {
+            result = result.concat(flatter(item, []))
+        } else {
+            result.push(item)
+        }
+    })
+    return result
+}
+
 // 2. with depth param
-function flatten(arr, depth = 1) {
-	return arr.reduce((newArr, nextArr) => newArr.concat(depth > 1 && Array.isArray(nextArr) ? flatten(nextArr, depth - 1) : nextArr), [])
+function flatten(arr, depth = Infinity) {
+	return arr.reduce((newArr, nextArr) => {
+		return newArr.concat(
+			depth > 1 && Array.isArray(nextArr) ?
+			 flatten(nextArr, depth - 1) :
+			  nextArr), []
+	})
 }
 
 /// compose
