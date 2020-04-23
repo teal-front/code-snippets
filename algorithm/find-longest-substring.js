@@ -5,7 +5,8 @@
 
 // Sliding Window Optimized
 exports.lengthOfLongestSubstring = (str) => {
-    let n = str.length, ans = 0
+    let n = str.length,
+        ans = 0
     let map = new Map()
     // [i, j]
     for (let i = 0, j = 0; j < n; j++) {
@@ -20,15 +21,18 @@ exports.lengthOfLongestSubstring = (str) => {
 
 // Sliding Window
 exports.lengthOfLongestSubstring2 = str => {
-    let ans = 0, i = 0, j = 0, l = str.length
+    let ans = 0,
+        i = 0,
+        j = 0,
+        l = str.length
     let set = new Set()
     // [i, j]
-    while(i < l && j < l) {
-        if (!set.has(str[j])) {
+    while (i < l && j < l) {
+        if (set.has(str[j])) {
+            set.delete(str[i++])
+        } else {
             set.add(str[j++])
             ans = Math.max(ans, j - i)
-        } else {
-            set.delete(str[i++])
         }
     }
     return ans
@@ -44,7 +48,7 @@ exports.lengthOfLongestSubstring3 = s => {
     for (let i = 0, l = s.length; i < l; i++) {
         let set = new Set()
         set.add(s[i])
-        for(let j = i + 1;j<l; j++){
+        for (let j = i + 1; j < l; j++) {
             if (set.has(s[j])) {
                 break
             }
