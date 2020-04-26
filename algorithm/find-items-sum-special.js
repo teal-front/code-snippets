@@ -1,6 +1,7 @@
 /// region 无重复值的数组data中选择n个值，使其值相加为sum
 
 // 和为sum的多个数，数目不固定
+// findSumN([2, 2, 4, -4, 7], 3) => null 有Bug
 exports.findSumN = (arr, sum) => {
     let ret = [];
     let sortedArr = [].slice.call(arr).sort((a,b) => b-a),

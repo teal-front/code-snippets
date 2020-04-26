@@ -23,9 +23,8 @@ function clone(target, map = new WeakMap()) {
             cloneTarget[key] = clone(target[key], map);
         }
         return cloneTarget;
-    } else {
-        return target;
     }
+    return target;
 }
 
 var clone1 = clone(target)

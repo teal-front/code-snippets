@@ -5,18 +5,17 @@ enum TEACHER_TYPE {
     MUSIC = 'music'
 }
 
-interface TeacherProperties {
+interface ITeacherProperties {
     name: string;
 }
 class Teacher {
     public name: string;
-    constructor(properties: TeacherProperties) {
+    constructor(properties: ITeacherProperties) {
         this.name = properties.name
     }
 }
 
-interface ICodingTeatherProperties {
-    name: string;
+interface ICodingTeatherProperties extends ITeacherProperties {
     programmingLanguage: string;
 }
 class CodingTeacher extends Teacher {
@@ -27,8 +26,7 @@ class CodingTeacher extends Teacher {
     }
 }
 
-interface IMusicTeacherProperties {
-    name: string;
+interface IMusicTeacherProperties extends ITeacherProperties {
     instrument: string;
 }
 class MusicTeacher extends Teacher {
