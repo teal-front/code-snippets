@@ -11,10 +11,10 @@ exports.lengthOfLongestSubstring = (str) => {
     // [i, j]
     for (let i = 0, j = 0; j < n; j++) {
         if (map.has(str[j])) {
-            i = Math.max(map.get(str[j]), i)
+            i = Math.max(map.get(str[j]) + 1, i)
         }
         ans = Math.max(ans, j - i + 1)
-        map.set(str[j], j + 1)
+        map.set(str[j], j)
     }
     return ans
 }
@@ -31,8 +31,8 @@ exports.lengthOfLongestSubstring2 = str => {
         if (set.has(str[j])) {
             set.delete(str[i++])
         } else {
+            ans = Math.max(ans, j - i + 1)
             set.add(str[j++])
-            ans = Math.max(ans, j - i)
         }
     }
     return ans
