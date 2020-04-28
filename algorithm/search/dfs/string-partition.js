@@ -2,31 +2,36 @@
  * Palindrome Partitioning
  * backtracking(回溯)
  * https://leetcode.com/problems/palindrome-partitioning/submissions/ 
+ * https://zxi.mytechroad.com/blog/searching/leetcode-131-palindrome-partitioning/
  * 
  */
 var partition = function (string) {
     let ret = []
-    dfs(string, [])
+    let cur = []
+    let n = string.length
+    dfs(0)
     return ret
 
-    function dfs(string, array) {
-        if (string === '') {
-            ret.push(array.slice())
+    function dfs(start) {
+        if (start === n) {
+            // shaddow copy
+            ret.push(cur.slice())
             return
         }
-        // '23'.slice(0, '23'.length) => '23'
-        // 故下面 i <= l
-        for (let i = 1, l = string.length; i <= l; i++) {
-            if (isPali(string.slice(0, i))) {
-                array.push(string.slice(0, i))
-                dfs(string.slice(i), array)
-                array.pop()
-            }
+        for (let i = start; i < n; i++) {
+            if (!isPali(string, start, i)) continue
+            console.log(start, i)
+            cur.push(string.slice(start, i + 1))
+            dfs(i + 1)
+            cur.pop()
         }
     }
 
-    function isPali(string) {
-        return string === string.split('').reverse().join('')
+    function isPali(string, l, r) {
+        while (l < r) {
+            if (string[l++] !== string[r--]) return false
+        }
+        return true
     }
 };
-console.log(partition('2332'))
+console.log(partition('23321'))
