@@ -8,6 +8,17 @@ https://linuxexplore.com/2014/03/19/use-of-subsystem-lock-files-in-init-script/
 ```
 
 ```bash
+cd /etc/init.d
+touch xxFile  #下面的脚本
+
+chmod 755 xxFile
+chkconfig add xxFile
+chkconfig --level 345 xxFile on
+
+service xxFile status|stop|restart
+```
+
+```bash
 #!/bin/bash
 
 #  这个很重要，不可缺少
@@ -30,7 +41,7 @@ super() {
 start() {
     echo "Starting $NAME"
     super $PM2 resurrect
-    
+
     retval=$?
     [ $retval -eq 0] && touch $lockfile
 }
@@ -39,7 +50,7 @@ stop() {
     #super $PM2 dump
     super $PM2 delete all
     super $PM2 kill
-    
+
     rm -f $lockfile
 }
 
