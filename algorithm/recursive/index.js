@@ -27,5 +27,25 @@ function clone(target, map = new WeakMap()) {
     return target;
 }
 
+function cloneDeep2(target, map = new WeakMap()) {
+    if (!target || typeof target !== 'object') {
+        throw new Error('argument error', 'cloneDeep')
+    }
+    let ans = Array.isArray(target) ? [] : {}
+    Object.keys(target).forEach(key => {
+        if (target[key] && typeof target[key] === 'object') {
+            if (map.has(target)) {
+                return map.get(target)
+            }
+            map.set(target, ans)
+            ans[key] = cloneDeep(target[key], map)
+        } else {
+            ans[key] = target[key]
+        }
+    })
+    console.log(map)
+    return target
+}
+
 var clone1 = clone(target)
 
