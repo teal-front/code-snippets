@@ -12,16 +12,16 @@ target.target = target;
 // 使用weakMap来防止内存溢出
 function clone(target, map = new WeakMap()) {
     // typeof null === 'object'
-    if (typeof target === 'object') {
+    if (target && typeof target === 'object') {
         let cloneTarget = Array.isArray(target) ? [] : {};
         if (map.get(target)) {
             return map.get(target);
         }
         // 实现了对象引用自身，在cloneTarget返回之前就赋值
         map.set(target, cloneTarget);
-        for (const key in target) {
-            cloneTarget[key] = clone(target[key], map);
-        }
+        Object.keys(target).forEach(key => {
+            cloneTarget[key] = clone(target[key], map)
+        })
         return cloneTarget;
     }
     return target;
