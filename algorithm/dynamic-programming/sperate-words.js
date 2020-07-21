@@ -1,5 +1,6 @@
 /// 单词拆分
 // https://juejin.im/post/5ca558b1e51d45592d48440a#heading-10
+// https://leetcode-cn.com/problems/word-break/solution/dan-ci-chai-fen-by-leetcode-solution/
 
 function wordBreak(s, wordDict) {
     let n = s.length

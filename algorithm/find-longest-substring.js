@@ -17,7 +17,7 @@ exports.lengthOfLongestSubstring = (str) => {
         map.set(str[j], j)
     }
     return ans
-}
+} 
 
 // Sliding Window
 exports.lengthOfLongestSubstring2 = str => {

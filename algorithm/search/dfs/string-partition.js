@@ -34,4 +34,4 @@ var partition = function (string) {
         return true
     }
 };
-console.log(partition('23321'))
+console.log(partition('aab'))
