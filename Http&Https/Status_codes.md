@@ -26,7 +26,7 @@
 501 Not Implemented
 502 Bad Gateway
 **503 Service Unavailable**
-504 Gateway Timeout
+**504 Gateway Timeout**
 
 ### 详细代码及说明
 1xx (临时响应)
