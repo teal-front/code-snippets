@@ -23,15 +23,21 @@ function clone(target, map = new WeakMap()) {
   // if (target instanceof Date) return new Date(target)
   if (typeof target !== 'object') return new Ctor(target)
   if (map.has(target)) return map.get(target)
+  if (Array.isArray(target)) return target.map(item => clone(item, map))
 
-  const cloneTarget = new Ctor()
-  // let cloneTarget = Array.isArray(target) ? [] : {};
+  // const cloneTarget = new Ctor()
+  const cloneTarget = Object.create(Object.getPrototypeOf(target))
   // 实现了对象引用自身，在cloneTarget返回之前就赋值
   map.set(target, cloneTarget);
-  Object.keys(target).forEach(key => {
-    cloneTarget[key] = clone(target[key], map)
-  })
-  return cloneTarget;
+  return Object.getOwnPropertyNames(target).reduce((o, p)=> {
+    Object.defineProperty(o, p, Object.getOwnPropertyDescriptor(o, p))
+    o[p] = clone(target[p], map)
+    return o
+  }, cloneTarget)
+  // return Object.keys(target).reduce((o, p) => {
+  //   o[p] = clone(target[p], map)
+  //   return o
+  // }, cloneTarget)
 }
 
 let clone1 = clone(target)
