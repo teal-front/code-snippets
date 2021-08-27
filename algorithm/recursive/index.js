@@ -22,7 +22,7 @@ function clone(target, map = new WeakMap()) {
   if (target instanceof RegExp || target instanceof Date) return new Ctor(target)
   // if (target instanceof Date) return new Date(target)
   if (typeof target !== 'object') return new Ctor(target)
-  if (map.get(target)) return map.get(target)
+  if (map.has(target)) return map.get(target)
 
   const cloneTarget = new Ctor()
   // let cloneTarget = Array.isArray(target) ? [] : {};
