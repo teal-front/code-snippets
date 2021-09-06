@@ -1,8 +1,3 @@
-//is window
-function isWindow (obj) {
-	return !obj && obj === obj.window;
-}
-
 //get defaultDisplay
 var elemdisplay = {}; //cache elem's default display
 function defaultDisplay( nodeName ) {
@@ -52,11 +47,6 @@ function defaultDisplay( nodeName ) {
 	}
 }
 
-//判断元素是否在文档中
-function isDisconnected (node) {
-	return !node || !node.parentNode || node.parentNode.nodeType === 11; //nodeType为11即是文档片段
-}
-
 //元素是否占用布局空间,from Sizzle.selectors.filter.PSEUDO :hidden & :visible
 var visible = {
 	hidden: function (node) {
@@ -90,26 +80,5 @@ function contains (a, b) {
 	}
 }
 
-//获取当前焦点元素, from jQuery pseudo :focus
-function getCurFocusElement () {
-	return document.activeElement;
-}
-
 //检测当前window对象是否是iframe里面的 from: jQuery v1.10.2 jQuery.ready.promise
 window.frameElement !== null //=> 为iframe 
-
-//看IE的DOM加载完了没 from: jQuery jQuery.ready.promise
- function doScrollCheck() {
-	try {
-		// If IE is used, use the trick by Diego Perini
-		// http://javascript.nwbox.com/IEContentLoaded/
-		document.documentElement.doScroll("left");
-	} catch (e) {
-		setTimeout(doScrollCheck, 50);
-		return;
-	}
-
-	//直到没有异常的时候,执行DOM加载好时触发的函数
-	console.log("dom load");	
-}  
-

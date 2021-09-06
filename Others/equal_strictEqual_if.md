@@ -26,21 +26,12 @@ String	false	false	ToNumber(A) === B	A === B	ToNumber(A) === ToNumber(B)	ToPrimi
 Boolean	false	false	ToNumber(A) === B	ToNumber(A) === ToNumber(B)	A === B	ToNumber(A) == ToPrimitive(B)
 Object	false	false	ToPrimitive(A) == B	ToPrimitive(A) == B	ToPrimitive(A) == ToNumber(B)
 A === B
-
-// 相同结构的对象不会相等
-[] != []
-({}) != ({})
 ```
 
 ### strictEqual ===
 ```
 NaN !== NaN
 -0 === +0
-
-null === null
-{} !== {}
-[] !== []
-undefined === undefined
 ```
 
 ### Object.is
@@ -55,8 +46,3 @@ if ('') // false
 if ([]) // true
 if ({}) // true
 ```
-
-
-### SameValueZero
-**TODO**
-todo
