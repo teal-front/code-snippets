@@ -43,13 +43,3 @@ function getCurrentStyle(s) {
   }
 }
 ```
-
-### Ajax
-广义上指不刷新页面获取数据的方式
-1. XHR(XMLHttpRequest)
-get会比post要快，post有两次发包过程，一次是发送header，一次是发送body。这样处理牺牲了速度，但是确保了TCP传送的完整性。下面是用`Wireshark`抓包的截图
-![http get](https://github.com/teal-front/code-snippets/blob/master/performance/images/get.png)
-![http post](https://github.com/teal-front/code-snippets/blob/master/performance/images/post.png)
-2. iframe
-3. dyamic scrite insert(使用`JSONP`数据格式)
-4. image信标
