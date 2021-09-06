@@ -3,27 +3,6 @@
 const assert = require('assert')
 
 describe('algorithm:', function () {
-    describe('#binary-search', function () {
-        const binarySearch = require('../algorithm/search/binary-search')
-        Object.keys(binarySearch).forEach(function (methodName) {
-            const method = binarySearch[methodName]
-            describe(`${methodName}()`, function () {
-                it('[0]', function () {
-                    assert.equal(method([0], 0), 0)
-                })
-                it('[0, 100]', function () {
-                    assert.equal(method([0, 100], 100), 1)
-                })
-                it('[0, 100, 200, 300, 400, 500, 600]', function () {
-                    assert.equal(method([0, 100, 200, 300, 400, 500, 600], 100), 1)
-                })
-                it('[0, 10, 20, 30, 40, 50, 60, 100]', function () {
-                    assert.equal(method([0, 10, 20, 30, 40, 50, 60, 100], 100), 7)
-                })
-            })
-        })
-    })
-
     describe('#sort', function () {
         describe('quicksort()', function () {
             const quickSort = require('../algorithm/sort/quicksort.js').quickSort
@@ -71,19 +50,6 @@ describe('algorithm:', function () {
         })
     })
 
-    describe('#bracketsPairsMatchTest', function () {
-        const pairsMatch = require('../algorithm/brackets-pairs-test')
-        it("if (ad=d) {cdd}(", function () {
-            assert.strictEqual(pairsMatch("if (ad=d) {cdd}("), false)
-        })
-        it("if (ad=d) {cd(d}", function () {
-            assert.strictEqual(pairsMatch("if (ad=d) {cd(d}"), false)
-        })
-        it("if(a==b) {c = d};", function () {
-            assert.strictEqual(pairsMatch("if(a==b) {c = d};"), true)
-        })
-    })
-
     describe('#findSubstrOfMaxTimes', function () {
         const methods = require('../algorithm/find-substr-of-max-times-in-string')
 
@@ -128,32 +94,6 @@ describe('algorithm:', function () {
         })
     })
 
-    describe('#find items in arr let sum is special', function () {
-        const {findSumN, findSumTwo} = require('../algorithm/find-items-sum-special')
-        const getSum = arr => arr.reduce((sum, cur) => sum + cur, 0)
-        describe('findSumN()', function () {
-            it('simple case', function () {
-                let target = findSumN([1, 3, 4, 5, 7], 8)
-                assert.strictEqual(getSum(target), 8)
-            })
-            it('hard case', function () {
-                let target = findSumN([1, 3, 4, 5, 7], 20)
-                assert.strictEqual(getSum(target), 20)
-            })
-        })
-        describe('findSumTwo()', function () {
-            it('simple case', function () {
-                let target = findSumTwo([1, 3, 4, 5, 7], 9)
-                assert.strictEqual(target.length, 2)
-                assert.strictEqual(getSum(target), 9)
-            })
-            it('hard case', function () {
-                let target = findSumTwo([1, 3, 4, 5, 7], 4)
-                assert.strictEqual(target.length, 2)
-                assert.strictEqual(getSum(target), 4)
-            })
-        })
-    })
     describe('#find longest substring length', function () {
         const methods = require('../algorithm/find-longest-substring')
         Object.keys(methods).forEach(m => {
