@@ -18,9 +18,12 @@ target.target = target;
 // 3、复制对象的原型链，new target.constructor()
 function clone(target, map = new WeakMap()) {
   if (target === null) return null
-  const Ctor = target.constructor
-  if (target instanceof RegExp || target instanceof Date) return new Ctor(target)
-  // if (target instanceof Date) return new Date(target)
+  if (target instanceof RegExp) {
+    const newTarget = new RegExp(target.source, target.flags)
+    newTarget.lastIndex = target.lastIndex
+    return newTarget
+  }
+  if (target instanceof Date) return new Date(target.getTime())
   if (typeof target !== 'object') return new Ctor(target)
   if (map.has(target)) return map.get(target)
   if (Array.isArray(target)) return target.map(item => clone(item, map))
@@ -34,10 +37,6 @@ function clone(target, map = new WeakMap()) {
     o[p] = clone(target[p], map)
     return o
   }, cloneTarget)
-  // return Object.keys(target).reduce((o, p) => {
-  //   o[p] = clone(target[p], map)
-  //   return o
-  // }, cloneTarget)
 }
 
 let clone1 = clone(target)
