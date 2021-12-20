@@ -169,6 +169,7 @@ git branch -d $branch # delete local branch
 git branch -D $unmergeBranch  # 强制删除，即使没有合并到master
 git push -d $remote $branch # delete remote branch
 git checkout $branch
+git remote prune orginn # 删除本地还存在，但远程已删除的分支
 
 git cherry  # 查看比HEAD多出的ref
 git cherry-pick test^2  # 把版本号检出到当前分支，会有它的提交记录
