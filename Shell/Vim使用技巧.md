@@ -1,3 +1,12 @@
+#### VIM 高级使用：https://www.ibm.com/developerworks/cn/linux/l-cn-tip-vim/
+
+#### 极客时间：《VIM实用技巧必知必会》https://time.geekbang.org/column/article/272121
+#### 实战篇：http://coolshell.cn/articles/5426.html
+
+#### online tutorial: http://www.openvim.com/
+
+#### Webstorm plugin: https://github.com/JetBrains/ideavim
+
 ## Bash
 
 1.  Ctrl + r
@@ -14,14 +23,6 @@
 3.  `vim +/searchText filename.txt` # 进入到 searchText 首次出现的位置
 
 ## vi | vim
-
-#### VIM 高级使用：https://www.ibm.com/developerworks/cn/linux/l-cn-tip-vim/
-
-#### 实战篇：http://coolshell.cn/articles/5426.html
-
-#### online tutorial: http://www.openvim.com/
-
-#### Webstorm plugin: https://github.com/JetBrains/ideavim
 
 补充一个 vi 的命令：
 
