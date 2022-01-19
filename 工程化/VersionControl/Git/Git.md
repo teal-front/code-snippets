@@ -38,11 +38,6 @@ git update-ref -d refs/remotes/heads/xxx
 ### init&clone&grep&help
 
 ```bash
-git init
-git clone git@github.com:xxx/project.git  # 可能在克隆项目里含有了.git文件，这时应使用里面的
-
-git help $somecommand   # help
-
 # grep
 # 仓库文件中去搜索！
 git grep 'app'
@@ -55,8 +50,6 @@ git clean -n ## 查看工作区有哪些未暂存文件
 ### config&status
 
 ```bash
-git status
-
 git config --global -l   # list global config
 git config user.name  # get local user name
 git config --global http.proxy http://127.0.0.1:8080   # set global http proxy
@@ -69,10 +62,8 @@ git config core.fileMode false    # 忽略文件权限修改，应该阻止提�
 2.  本地
 
 ```bash
-git fetch $origin   # 拉新，并丢弃本地修改 ?
 git reset HEAD origin/master   # 丢弃你在本地的所有改动与提交，包括提交哦 ?只是暂存区的吧
 
-git push --mirror {name}   # 提交远程，整个git仓库，所有分支，所有历史
 git push -u origin master # 创建远程同名跟踪分支，同 --set-upstream
 
 ###  回退
@@ -80,9 +71,6 @@ git reset --hard HEAD~1    # 本地回退到上一版本,HEAD~n,n为0表示最�
 git push origin master --force   # 将本地的版本强制提交，这样服务器上完全没有上一次提交的记录了
 
 git push origin $localBranch:master     # 把localBranch提交到远程master分支
-
-git pull
-git pull origin master   # 指定向origin/master拉取
 ```
 
 ### remote
@@ -90,17 +78,11 @@ git pull origin master   # 指定向origin/master拉取
 > https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8
 
 ```bash
-git remote add {name} git@github:teal-front/project.git
+git remote add {remoteName} git@github:teal-front/project.git
 # push a git repo to folder over ssh
 # need init a bare git repo(without a working tree) on ssh server
 git init --bare myproject.git
-
-git remote -v          # list all remote repo verbose
-
-git push
-1. 默认找远程同名分支名，
-2. 得跟过程分支挂钩，即设置branch.$branchName.remote=origin &
- branch.$branchName.merge=refs/head/$branchName
+git push --mirror {remoteName}   # 提交远程，整个git仓库，所有分支，所有历史
 ```
 
 ### add&commit&reset
@@ -152,7 +134,7 @@ git tag     #list all tag
 git tag -a 'v1.1.6' -m 'my version v1.1.6'    # add tag(含附注) , -a 就是含附注(annotate)的
 git tag -a 'x.x.x' $commit_hash               # 从历史commit创建tag
 git push origin $tagname                      # 需要主动推才行，不然remote上没有
-git push --tags                               # 把本地tags都推远程
+git push --tags                               # 把本地tags都推远程
 git push --follow-tags                        # ?
 git tag -d $tagname                           # delete tag
 ```
@@ -169,7 +151,7 @@ git branch -d $branch # delete local branch
 git branch -D $unmergeBranch  # 强制删除，即使没有合并到master
 git push -d $remote $branch # delete remote branch
 git checkout $branch
-git remote prune orginn # 删除本地还存在，但远程已删除的分支
+git remote prune orgin # 删除本地还存在，但远程已删除的分支
 
 git cherry  # 查看比HEAD多出的ref
 git cherry-pick test^2  # 把版本号检出到当前分支，会有它的提交记录
