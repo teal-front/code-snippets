@@ -287,6 +287,11 @@ find /path/to/file -maxdepth 1 -type d -ctime +2 | xargs rm -rf
 for n in `find -name 'app-node-out__*'`; do
     mv $n ${n/app-node-/};
 done
+# for array
+apps=('app-node' 'app-node-cps' 'app-node-cps-pc' 'app-node-agent' 'app-node-weshop' 'app-node-shop')
+for app in ${apps[@]}; do
+	echo $app
+done
 
 # grep的正则：http://www.cyberciti.biz/faq/grep-regular-expressions/
 grep   # global regular expression Print

@@ -137,7 +137,7 @@ for f in /path/*; do
     if [ -f $f ];then
         continue
     fi
-    if [ -d /path/$file ]; then
+    if [ -d /path/$f]; then
         break
     fi
 done
