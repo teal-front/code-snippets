@@ -480,7 +480,7 @@ screen         # 当前环境打开一个新窗口，Ctrl+a,d: 隐藏窗口，-l
 # .tar.gz: 经tar打包，并gzip压缩,tar不提供压缩只有打包功能
 gzip filename            # 生成.gz压缩文件，但不能对文件夹生效
 gzip -d filename.gz      # 解压.gz文件
-# tar # -a: 创建 -z: gzip解压  -x: 解压   -v: 可视化    -f: 保持文件名一致(!这个参数还得放在最后一个！！！) -t: 直接查看内容
+# tar # -c: 创建 -z: gzip解压  -x: 解压   -v: 可视化    -f: 生成到文件名，而不用> -t: 直接查看内容
 tar -cvf file.tar ./    # 打包
 tar -xvf file.tar     # 解包
 tar -tvf file.tar or file.tar.gz  # 查看包内容
